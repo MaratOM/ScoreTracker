@@ -7,18 +7,12 @@
 
 import SwiftUI
 
-struct Player: Identifiable {
-    let id: Int
-    let name: String
-    let avatar: String
-}
-
 struct PlayersScreen: View {
     @State private var players: [Player] = [
-        .init(id: 1, name: "John", avatar: "😎"),
-        .init(id: 2, name: "Paul", avatar: "🤩"),
-        .init(id: 3, name: "George", avatar: "😵‍💫"),
-        .init(id: 4, name: "Ringo", avatar: "🥸"),
+        .init(id: UUID().uuidString, name: "John", avatar: "😎"),
+        .init(id: UUID().uuidString, name: "Paul", avatar: "🤩"),
+        .init(id: UUID().uuidString, name: "George", avatar: "😵‍💫"),
+        .init(id: UUID().uuidString, name: "Ringo", avatar: "🥸"),
     ]
     
     var body: some View {
@@ -48,6 +42,7 @@ struct PlayersScreen: View {
                         .padding([.bottom], 10)
                 }
             }
+            .navigationTitle("Players")
         }
     }
 }

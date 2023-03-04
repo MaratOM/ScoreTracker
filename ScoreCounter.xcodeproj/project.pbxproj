@@ -17,6 +17,9 @@
 		0CE89A9629B38238001F4232 /* AvatarsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */; };
 		0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9829B38578001F4232 /* PlayerView.swift */; };
 		0CE89A9B29B38671001F4232 /* PlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9A29B38671001F4232 /* PlayerScreen.swift */; };
+		0CE89A9F29B3A723001F4232 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9E29B3A723001F4232 /* Player.swift */; };
+		0CE89AA229B3A781001F4232 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89AA129B3A781001F4232 /* Game.swift */; };
+		0CE89AA429B3A7E1001F4232 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89AA329B3A7E1001F4232 /* GameType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsListScreen.swift; sourceTree = "<group>"; };
 		0CE89A9829B38578001F4232 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0CE89A9A29B38671001F4232 /* PlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScreen.swift; sourceTree = "<group>"; };
+		0CE89A9E29B3A723001F4232 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0CE89AA129B3A781001F4232 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		0CE89AA329B3A7E1001F4232 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +90,8 @@
 		0CE89A9129B37F66001F4232 /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				0C6A4FF229B118A600A37818 /* GamesScreen.swift */,
+				0CE89AA529B3A8C1001F4232 /* Screens */,
+				0CE89AA029B3A73D001F4232 /* Models */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -92,11 +99,9 @@
 		0CE89A9229B37F73001F4232 /* Players */ = {
 			isa = PBXGroup;
 			children = (
+				0CE89A9D29B3A5E3001F4232 /* Screens */,
+				0CE89A9C29B3A5D5001F4232 /* Models */,
 				0CE89A9729B38544001F4232 /* Views */,
-				0C37419829B229A70061D4E0 /* PlayersScreen.swift */,
-				0CE89A9329B380A0001F4232 /* AddPlayerScreen.swift */,
-				0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */,
-				0CE89A9A29B38671001F4232 /* PlayerScreen.swift */,
 			);
 			path = Players;
 			sourceTree = "<group>";
@@ -107,6 +112,42 @@
 				0CE89A9829B38578001F4232 /* PlayerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0CE89A9C29B3A5D5001F4232 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CE89A9E29B3A723001F4232 /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CE89A9D29B3A5E3001F4232 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0C37419829B229A70061D4E0 /* PlayersScreen.swift */,
+				0CE89A9329B380A0001F4232 /* AddPlayerScreen.swift */,
+				0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */,
+				0CE89A9A29B38671001F4232 /* PlayerScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		0CE89AA029B3A73D001F4232 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CE89AA129B3A781001F4232 /* Game.swift */,
+				0CE89AA329B3A7E1001F4232 /* GameType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CE89AA529B3A8C1001F4232 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0C6A4FF229B118A600A37818 /* GamesScreen.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,12 +221,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CE89A9629B38238001F4232 /* AvatarsListScreen.swift in Sources */,
+				0CE89AA229B3A781001F4232 /* Game.swift in Sources */,
 				0C6A4FF329B118A600A37818 /* GamesScreen.swift in Sources */,
 				0CE89A9B29B38671001F4232 /* PlayerScreen.swift in Sources */,
 				0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */,
 				0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */,
+				0CE89AA429B3A7E1001F4232 /* GameType.swift in Sources */,
 				0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */,
 				0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */,
+				0CE89A9F29B3A723001F4232 /* Player.swift in Sources */,
 				0CE89A9429B380A0001F4232 /* AddPlayerScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,7 +24,7 @@ struct PlayerScreen_Previews: PreviewProvider {
     static var previews: some View {
         PlayerScreen(
             player: Player(
-                id: 0,
+                id: UUID().uuidString,
                 name: "John",
                 avatar: "😎"
             )

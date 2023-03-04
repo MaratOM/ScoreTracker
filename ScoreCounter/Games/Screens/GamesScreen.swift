@@ -7,34 +7,6 @@
 
 import SwiftUI
 
-struct Game {
-    let name: String
-    let type: GameType
-}
-
-extension Game: Identifiable {
-    var id: String {
-        name
-    }
-}
-
-enum GameType {
-    case up
-    case down
-    case single
-    
-    var imageName: String {
-        switch self {
-        case .up:
-            return "arrow.up.square"
-        case .down:
-            return "arrow.down.square"
-        case .single:
-            return "scope"
-        }
-    }
-}
-
 struct GamesScreen: View {
     @State private var games: [Game] = [
         .init(name: "Uno", type: .up),
