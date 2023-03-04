@@ -20,4 +20,6 @@ final class ScoreCounterData: ObservableObject {
         .init(id: UUID().uuidString, name: "George", avatar: "😵‍💫"),
         .init(id: UUID().uuidString, name: "Ringo", avatar: "🥸"),
     ]
+    
+    @Published var chosenAvatar = ""
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AvatarsListScreen: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var scoreCounterData: ScoreCounterData
 
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
@@ -30,8 +31,15 @@ struct AvatarsListScreen: View {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(0x1f600...0x1f645, id: \.self) { value in
-                        Text(emoji(value))
-                            .font(.system(size: 70))
+                        let avatar = emoji(value)
+                        
+                        Button {
+                            scoreCounterData.chosenAvatar = avatar
+                            dismiss()
+                        } label: {
+                            Text(avatar)
+                                .font(.system(size: 70))
+                        }
                     }
                 }
             }
@@ -47,5 +55,6 @@ struct AvatarsListScreen: View {
 struct AvatarsListScreen_Previews: PreviewProvider {
     static var previews: some View {
         AvatarsListScreen()
+            .environmentObject(ScoreCounterData())
     }
 }
