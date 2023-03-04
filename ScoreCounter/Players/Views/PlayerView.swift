@@ -21,13 +21,11 @@ struct PlayerView: View {
 }
 
 struct PlayerView_Previews: PreviewProvider {
+    static let scoreCounterData = ScoreCounterData()
+    
     static var previews: some View {
         PlayerView(
-            player: Player(
-                id: UUID().uuidString,
-                name: "John",
-                avatar: "😎"
-            )
+            player: scoreCounterData.players[0]
         )
     }
 }

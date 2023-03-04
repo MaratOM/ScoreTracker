@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ScoreCounterApp: App {
+    @StateObject private var scoreCounterData = ScoreCounterData()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(scoreCounterData)
         }
     }
 }

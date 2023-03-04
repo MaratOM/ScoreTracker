@@ -12,6 +12,7 @@ import SwiftUI
 struct AddPlayerScreen: View {
     @State private var isModal = false
     @State private var name = ""
+
     var body: some View {
         VStack {
             Button {

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct AvatarsListScreen: View {
     @Environment(\.dismiss) var dismiss
-    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+
     var body: some View {
+        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+
         VStack {
             HStack {
                 Spacer()
@@ -27,9 +29,9 @@ struct AvatarsListScreen: View {
 
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(0x1f600...0x1f679, id: \.self) { value in
+                    ForEach(0x1f600...0x1f645, id: \.self) { value in
                         Text(emoji(value))
-                            .font(.largeTitle)
+                            .font(.system(size: 70))
                     }
                 }
             }

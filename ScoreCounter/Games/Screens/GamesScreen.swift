@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct GamesScreen: View {
-    @State private var games: [Game] = [
-        .init(name: "Uno", type: .up),
-        .init(name: "Domino", type: .down),
-        .init(name: "Chess", type: .single),
-    ]
+    @EnvironmentObject var scoreCounterData: ScoreCounterData
     
     var body: some View {
+        let games = scoreCounterData.games
+
         NavigationView {
             List(games) { game in
                 NavigationLink {
@@ -32,5 +30,6 @@ struct GamesScreen: View {
 struct GamesScreen_Previews: PreviewProvider {
     static var previews: some View {
         GamesScreen()
+            .environmentObject(ScoreCounterData())
     }
 }

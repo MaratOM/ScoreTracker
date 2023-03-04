@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct PlayersScreen: View {
-    @State private var players: [Player] = [
-        .init(id: UUID().uuidString, name: "John", avatar: "😎"),
-        .init(id: UUID().uuidString, name: "Paul", avatar: "🤩"),
-        .init(id: UUID().uuidString, name: "George", avatar: "😵‍💫"),
-        .init(id: UUID().uuidString, name: "Ringo", avatar: "🥸"),
-    ]
+    @EnvironmentObject var scoreCounterData: ScoreCounterData
     
     var body: some View {
+        let players = scoreCounterData.players
+
         NavigationView {
             VStack {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -50,5 +47,6 @@ struct PlayersScreen: View {
 struct PlayersScreen_Previews: PreviewProvider {
     static var previews: some View {
         PlayersScreen()
+            .environmentObject(ScoreCounterData())
     }
 }

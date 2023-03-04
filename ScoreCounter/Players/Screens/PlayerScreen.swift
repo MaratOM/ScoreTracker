@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerScreen: View {
     var player: Player
+
     var body: some View {
         VStack {
             Text(player.avatar)
@@ -21,13 +22,11 @@ struct PlayerScreen: View {
 }
 
 struct PlayerScreen_Previews: PreviewProvider {
+    static let scoreCounterData = ScoreCounterData()
+    
     static var previews: some View {
         PlayerScreen(
-            player: Player(
-                id: UUID().uuidString,
-                name: "John",
-                avatar: "😎"
-            )
+            player: scoreCounterData.players[0]
         )
     }
 }
