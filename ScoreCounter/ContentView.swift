@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: Tab = .games
+    
+    enum Tab {
+        case games
+        case players
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView(selection: $selection) {
+            GamesScreen()
+                .tag(Tab.games)
+                .tabItem {
+                    Label("Games", systemImage: "gamecontroller")
+                }
+            PlayersScreen()
+                .tag(Tab.players)
+                .tabItem {
+                    Label("Players", systemImage: "person")
+                }            
+        }
     }
 }
 
