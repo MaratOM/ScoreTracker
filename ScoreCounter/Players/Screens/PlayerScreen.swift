@@ -22,11 +22,11 @@ struct PlayerScreen: View {
 }
 
 struct PlayerScreen_Previews: PreviewProvider {
-    static let scoreCounterData = ScoreCounterData()
+    static let store = ScoreCounterStore()
     
     static var previews: some View {
         PlayerScreen(
-            player: scoreCounterData.players[0]
+            player: store.players[0]
         )
     }
 }

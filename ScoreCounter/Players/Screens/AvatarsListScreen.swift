@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AvatarsListScreen: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var scoreCounterData: ScoreCounterData
+    @EnvironmentObject var store: ScoreCounterStore
 
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
@@ -34,7 +34,7 @@ struct AvatarsListScreen: View {
                         let avatar = emoji(value)
                         
                         Button {
-                            scoreCounterData.chosenAvatar = avatar
+                            store.chosenAvatar = avatar
                             dismiss()
                         } label: {
                             Text(avatar)
@@ -55,6 +55,6 @@ struct AvatarsListScreen: View {
 struct AvatarsListScreen_Previews: PreviewProvider {
     static var previews: some View {
         AvatarsListScreen()
-            .environmentObject(ScoreCounterData())
+            .environmentObject(ScoreCounterStore())
     }
 }

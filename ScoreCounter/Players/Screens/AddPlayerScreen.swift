@@ -11,19 +11,23 @@ import SwiftUI
 
 struct AddPlayerScreen: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var scoreCounterData: ScoreCounterData
+    @EnvironmentObject var store: ScoreCounterStore
     @State private var isModal = false
     @State private var name = ""
+    
+    func clearData() {
+        store.chosenAvatar = ""
+        name = ""
+    }
 
     var body: some View {
-        let avatar = scoreCounterData.chosenAvatar
-
+        let avatar = store.chosenAvatar
         
         VStack {
             Button {
                 isModal.toggle()
             } label: {
-                Text(avatar != "" ? avatar : "☺︎")
+                Text(avatar != "" ? avatar : "🫥")
                     .font(.system(size: 120))
                     .foregroundColor(.black)
             }
@@ -40,30 +44,30 @@ struct AddPlayerScreen: View {
                 HStack {
                     Button {
                         dismiss()
+                        clearData()
                     } label: {
                         Text("Cancel")
                     }
                     .buttonStyle(.bordered)
                     
                     Button {
-                        if scoreCounterData.chosenAvatar != "",
+                        if store.chosenAvatar != "",
                            name != "" {
-                            scoreCounterData.players.append(
+                            store.players.append(
                                 Player(
-                                    id: UUID().uuidString,
                                     name: name,
-                                    avatar: scoreCounterData.chosenAvatar
+                                    avatar: store.chosenAvatar
                                 )
                             )
                             
                             dismiss()
-                            scoreCounterData.chosenAvatar = ""
-                            name = ""
+                            clearData()
                         }
                     } label: {
                         Text("Add")
                     }
                     .buttonStyle(.borderedProminent)
+                    .disabled(store.chosenAvatar == "" || name == "")
                 }
                 .padding(.top, -30)
             }
@@ -74,6 +78,6 @@ struct AddPlayerScreen: View {
 struct AddPlayerScreen_Previews: PreviewProvider {
     static var previews: some View {
         AddPlayerScreen()
-            .environmentObject(ScoreCounterData())
+            .environmentObject(ScoreCounterStore())
     }
 }

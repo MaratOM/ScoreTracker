@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PlayersScreen: View {
-    @EnvironmentObject var scoreCounterData: ScoreCounterData
+    @EnvironmentObject var store: ScoreCounterStore
     
     var body: some View {
-        let players = scoreCounterData.players
+        let players = store.players
 
         NavigationView {
             VStack {
@@ -47,6 +47,6 @@ struct PlayersScreen: View {
 struct PlayersScreen_Previews: PreviewProvider {
     static var previews: some View {
         PlayersScreen()
-            .environmentObject(ScoreCounterData())
+            .environmentObject(ScoreCounterStore())
     }
 }

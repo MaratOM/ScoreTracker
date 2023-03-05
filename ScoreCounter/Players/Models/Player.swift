@@ -5,8 +5,10 @@
 //  Created by Marat Mikaelyan on 04.03.2023.
 //
 
+import Foundation
+
 struct Player: Identifiable {
-    let id: String
+    let id: UUID = UUID()
     let name: String
     let avatar: String
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ScoreCounterData: ObservableObject {
+final class ScoreCounterStore: ObservableObject {
     @Published var games: [Game] = [
         .init(name: "Uno", type: .up),
         .init(name: "Domino", type: .down),
@@ -15,10 +15,10 @@ final class ScoreCounterData: ObservableObject {
     ]
     
     @Published var players: [Player] = [
-        .init(id: UUID().uuidString, name: "John", avatar: "😎"),
-        .init(id: UUID().uuidString, name: "Paul", avatar: "🤩"),
-        .init(id: UUID().uuidString, name: "George", avatar: "😵‍💫"),
-        .init(id: UUID().uuidString, name: "Ringo", avatar: "🥸"),
+        .init(name: "John", avatar: "😎"),
+        .init(name: "Paul", avatar: "🤩"),
+        .init(name: "George", avatar: "😵‍💫"),
+        .init(name: "Ringo", avatar: "🥸"),
     ]
     
     @Published var chosenAvatar = ""
