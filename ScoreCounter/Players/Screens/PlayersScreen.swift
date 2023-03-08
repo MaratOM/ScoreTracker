@@ -29,15 +29,7 @@ struct PlayersScreen: View {
                     }
                 }
                 
-                NavigationLink {
-                    AddPlayerScreen()
-                } label: {
-                    Label("text", systemImage: "plus.circle")
-                        .font(.system(size: 50))
-                        .foregroundColor(.black)
-                        .labelStyle(.iconOnly)
-                        .padding([.bottom], 10)
-                }
+                AddItemView(linkView: AddPlayerScreen())
             }
             .navigationTitle("Players")
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: Tab = .games
+    @EnvironmentObject var store: ScoreCounterStore
     
     enum Tab {
         case games
@@ -16,7 +16,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        TabView(selection: $selection) {
+        TabView(selection: $store.tabSelection) {
             GamesScreen()
                 .tag(Tab.games)
                 .tabItem {
@@ -34,5 +34,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ScoreCounterStore())
     }
 }

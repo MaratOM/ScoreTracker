@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C09022F29B912FB006010F7 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09022E29B912FB006010F7 /* AddItemView.swift */; };
+		0C09023329B91554006010F7 /* AddGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09023229B91554006010F7 /* AddGameScreen.swift */; };
 		0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37419829B229A70061D4E0 /* PlayersScreen.swift */; };
 		0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A4FE429B10F1100A37818 /* ScoreCounterApp.swift */; };
 		0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A4FE629B10F1100A37818 /* ContentView.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C09022E29B912FB006010F7 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		0C09023229B91554006010F7 /* AddGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameScreen.swift; sourceTree = "<group>"; };
 		0C37419829B229A70061D4E0 /* PlayersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScreen.swift; sourceTree = "<group>"; };
 		0C6A4FE129B10F1100A37818 /* ScoreCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C6A4FE429B10F1100A37818 /* ScoreCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCounterApp.swift; sourceTree = "<group>"; };
@@ -52,6 +56,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C09022C29B912B9006010F7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C09022D29B912C6006010F7 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0C09022D29B912C6006010F7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0C09022E29B912FB006010F7 /* AddItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0C6A4FD829B10F1100A37818 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +91,7 @@
 		0C6A4FE329B10F1100A37818 /* ScoreCounter */ = {
 			isa = PBXGroup;
 			children = (
+				0C09022C29B912B9006010F7 /* Common */,
 				0CE89AA629B3A942001F4232 /* Resources */,
 				0CE89A9229B37F73001F4232 /* Players */,
 				0CE89A9129B37F66001F4232 /* Games */,
@@ -149,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				0C6A4FF229B118A600A37818 /* GamesScreen.swift */,
+				0C09023229B91554006010F7 /* AddGameScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -235,6 +257,7 @@
 				0CE89AA229B3A781001F4232 /* Game.swift in Sources */,
 				0C6A4FF329B118A600A37818 /* GamesScreen.swift in Sources */,
 				0CE89A9B29B38671001F4232 /* PlayerScreen.swift in Sources */,
+				0C09022F29B912FB006010F7 /* AddItemView.swift in Sources */,
 				0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */,
 				0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */,
 				0CE89AA429B3A7E1001F4232 /* GameType.swift in Sources */,
@@ -243,6 +266,7 @@
 				0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */,
 				0CE89A9F29B3A723001F4232 /* Player.swift in Sources */,
 				0CE89A9429B380A0001F4232 /* AddPlayerScreen.swift in Sources */,
+				0C09023329B91554006010F7 /* AddGameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

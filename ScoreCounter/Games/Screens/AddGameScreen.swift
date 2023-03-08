@@ -1,44 +1,39 @@
 //
-//  SwiftUIView.swift
-//
-//  AddPlayerScreen.swift
+//  AddGameScreen.swift
 //  ScoreCounter
 //
-//  Created by Marat Mikaelyan on 04.03.2023.
+//  Created by Marat Mikaelyan on 08.03.2023.
 //
 
 import SwiftUI
 
-struct AddPlayerScreen: View {
+struct AddGameScreen: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var store: ScoreCounterStore
-    @State private var isModal = false
+    @State private var type: GameType = .down
     @State private var name = ""
     
     func clearData() {
-        store.chosenAvatar = ""
+        type = .down
         name = ""
     }
 
     var body: some View {
-        let avatar = store.chosenAvatar
-        
         VStack {
-            Button {
-                isModal.toggle()
+            Picker(selection: $type) {
+                ForEach(GameType.allCases, id: \.self) {
+                    Image(systemName: $0.imageName).tag($0)    
+                }
             } label: {
-                Text(avatar != "" ? avatar : "🫥")
-                    .font(.system(size: 120))
-                    .foregroundColor(.black)
+                Text("Picker Name")
             }
-            .sheet(isPresented: $isModal) {
-                AvatarsListScreen()
-            }
+            .pickerStyle(.segmented)
             
-            TextField("Add Name", text: $name)
+            Text("\(type.description)")
+            
+            TextField("Add Game", text: $name)
                 .font(.title)
                 .multilineTextAlignment(.center)
-                .padding(.top, -70)
             
             VStack {
                 HStack {
@@ -51,12 +46,11 @@ struct AddPlayerScreen: View {
                     .buttonStyle(.bordered)
                     
                     Button {
-                        if store.chosenAvatar != "",
-                           name != "" {
-                            store.players.append(
-                                Player(
+                        if name != "" {
+                            store.games.append(
+                                Game(
                                     name: name,
-                                    avatar: store.chosenAvatar
+                                    type: type
                                 )
                             )
                             
@@ -67,18 +61,18 @@ struct AddPlayerScreen: View {
                         Text("Add")
                     }
                     .buttonStyle(.borderedProminent)
-                    .disabled(store.chosenAvatar == "" || name == "")
+                    .disabled(name == "")
                 }
-                .padding(.top, -30)
             }
         }
-        .navigationTitle("Add Player")
+        .navigationTitle("Add Game")
     }
 }
 
-struct AddPlayerScreen_Previews: PreviewProvider {
+struct AddGameScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddPlayerScreen()
+        AddGameScreen()
             .environmentObject(ScoreCounterStore())
     }
 }
+

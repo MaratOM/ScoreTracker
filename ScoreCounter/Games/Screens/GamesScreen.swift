@@ -14,13 +14,16 @@ struct GamesScreen: View {
         let games = store.games
 
         NavigationView {
-            List(games) { game in
-                NavigationLink {
-                    Text(game.name)
-                        .font(.system(size: 40))
-                } label: {
-                    Label(game.name, systemImage: game.type.imageName)
+            VStack {
+                List(games) { game in
+                    NavigationLink {
+                        Text(game.name)
+                            .font(.system(size: 40))
+                    } label: {
+                        Label(game.name, systemImage: game.type.imageName)
+                    }
                 }
+                AddItemView(linkView: AddGameScreen())
             }
             .navigationTitle("Games")
         }
