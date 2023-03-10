@@ -49,6 +49,7 @@ struct GamesScreen: View {
             }
             .navigationTitle("Games")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

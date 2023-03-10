@@ -33,6 +33,7 @@ struct PlayersScreen: View {
             }
             .navigationTitle("Players")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
