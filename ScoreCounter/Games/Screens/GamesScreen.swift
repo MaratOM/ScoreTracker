@@ -38,7 +38,7 @@ struct GamesScreen: View {
                     AddItemView(linkView: AddGameScreen())
                 }
                 .padding(.leading, 20)
-                .frame(width: 400, height: 70)
+                .frame(width: nil, height: 70)
                 
                 NavigationLink(
                     destination: PlayerScreen(player: store.players[0]),
