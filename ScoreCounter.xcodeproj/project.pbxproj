@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C09022F29B912FB006010F7 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09022E29B912FB006010F7 /* AddItemView.swift */; };
 		0C09023329B91554006010F7 /* AddGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09023229B91554006010F7 /* AddGameScreen.swift */; };
+		0C0903CD29BCB4CC006010F7 /* UIDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 0C0903CC29BCB4CC006010F7 /* UIDesignSystem */; };
 		0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37419829B229A70061D4E0 /* PlayersScreen.swift */; };
 		0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A4FE429B10F1100A37818 /* ScoreCounterApp.swift */; };
 		0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A4FE629B10F1100A37818 /* ContentView.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		0C09022E29B912FB006010F7 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		0C09023229B91554006010F7 /* AddGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameScreen.swift; sourceTree = "<group>"; };
+		0C0903CA29BCB29C006010F7 /* UIDesignSystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UIDesignSystem; sourceTree = "<group>"; };
 		0C37419829B229A70061D4E0 /* PlayersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScreen.swift; sourceTree = "<group>"; };
 		0C6A4FE129B10F1100A37818 /* ScoreCounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreCounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C6A4FE429B10F1100A37818 /* ScoreCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCounterApp.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0903CD29BCB4CC006010F7 /* UIDesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,11 +75,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0C0903CB29BCB4CC006010F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0C6A4FD829B10F1100A37818 = {
 			isa = PBXGroup;
 			children = (
 				0C6A4FE329B10F1100A37818 /* ScoreCounter */,
 				0C6A4FE229B10F1100A37818 /* Products */,
+				0C0903CB29BCB4CC006010F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +102,7 @@
 		0C6A4FE329B10F1100A37818 /* ScoreCounter */ = {
 			isa = PBXGroup;
 			children = (
+				0C0903CA29BCB29C006010F7 /* UIDesignSystem */,
 				0C09022C29B912B9006010F7 /* Common */,
 				0CE89AA629B3A942001F4232 /* Resources */,
 				0CE89A9229B37F73001F4232 /* Players */,
@@ -199,6 +211,9 @@
 			dependencies = (
 			);
 			name = ScoreCounter;
+			packageProductDependencies = (
+				0C0903CC29BCB4CC006010F7 /* UIDesignSystem */,
+			);
 			productName = ScoreCounter;
 			productReference = 0C6A4FE129B10F1100A37818 /* ScoreCounter.app */;
 			productType = "com.apple.product-type.application";
@@ -467,6 +482,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C0903CC29BCB4CC006010F7 /* UIDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIDesignSystem;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0C6A4FD929B10F1100A37818 /* Project object */;
 }
