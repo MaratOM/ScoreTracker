@@ -11,12 +11,18 @@ struct ContentView: View {
     @EnvironmentObject var store: ScoreCounterStore
     
     enum Tab {
+        case matches
         case games
         case players
     }
     
     var body: some View {
         TabView(selection: $store.tabSelection) {
+            MatchesScreen()
+                .tag(Tab.matches)
+                .tabItem {
+                    Label("Matches", systemImage: "list.triangle")
+                }
             GamesScreen()
                 .tag(Tab.games)
                 .tabItem {
