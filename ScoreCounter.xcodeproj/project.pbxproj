@@ -27,6 +27,7 @@
 		0CEBFF202A9A75A4003C7FE5 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF1F2A9A75A4003C7FE5 /* Match.swift */; };
 		0CEBFF222A9A796D003C7FE5 /* MatchesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF212A9A796D003C7FE5 /* MatchesScreen.swift */; };
 		0CEBFF242A9A83EA003C7FE5 /* ScoreCounterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF232A9A83EA003C7FE5 /* ScoreCounterData.swift */; };
+		0CEBFF282A9B309C003C7FE5 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		0CEBFF1F2A9A75A4003C7FE5 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		0CEBFF212A9A796D003C7FE5 /* MatchesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesScreen.swift; sourceTree = "<group>"; };
 		0CEBFF232A9A83EA003C7FE5 /* ScoreCounterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCounterData.swift; sourceTree = "<group>"; };
+		0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 		0CEBFF1E2A9A758B003C7FE5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				0C09022F29B912FB006010F7 /* AddItemView.swift in Sources */,
 				0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */,
 				0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */,
+				0CEBFF282A9B309C003C7FE5 /* MatchCell.swift in Sources */,
 				0CE89AA429B3A7E1001F4232 /* GameType.swift in Sources */,
 				0CEBFF202A9A75A4003C7FE5 /* Match.swift in Sources */,
 				0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */,

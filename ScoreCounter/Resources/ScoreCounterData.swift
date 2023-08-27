@@ -17,24 +17,26 @@ struct ScoreCounterData {
     }
     
     struct Players {
-        static let john = Player(name: "John", avatar: "😎")
+        static let me = Player(name: "Me", avatar: "😎")
+        static let john = Player(name: "John", avatar: "😀")
         static let paul = Player(name: "Paul", avatar: "🤩")
         static let george = Player(name: "George", avatar: "😵‍💫")
-        static let ringo = Player(name: "Ringo", avatar: "🥸")
+        static let ringo = Player(name: "Ringo", avatar: "😊")
     }
 
     struct Matches {
-        static let match1Players = [Players.george, Players.ringo]
+        static let match1Players = [Players.me, Players.george, Players.ringo]
         static let match1 = Match(
             id: UUID(),
             game: Games.uno,
+            date: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!,
             players: match1Players,
             winScore: 300,
             rounds: [],
             winner: nil
         )
         
-        static let match2Players = [Players.george, Players.ringo, Players.paul]
+        static let match2Players = [Players.george, Players.me, Players.ringo, Players.paul]
         static let match2Rounds: [Round] = [
             .init(
                 scores: [
@@ -68,6 +70,7 @@ struct ScoreCounterData {
         static let match2 = Match(
             id: UUID(),
             game: Games.uno,
+            date: Calendar.current.date(byAdding: .day, value: -10, to: Date())!,
             players: match2Players,
             winScore: 300,
             rounds: match2Rounds,

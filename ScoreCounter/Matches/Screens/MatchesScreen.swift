@@ -24,7 +24,7 @@ struct MatchesScreen: View {
                                 Text(match.game.name)
                                     .font(.system(size: 40))
                             } label: {
-                                Label(match.game.name, systemImage: match.game.type.imageName)
+                                MatchCell(match: match)
                                 Spacer()
                                 Label("", systemImage: "chevron.right")
                             }
@@ -43,7 +43,7 @@ struct MatchesScreen: View {
 
 struct MatchesScreen_Previews: PreviewProvider {
     static var previews: some View {
-        GamesScreen()
+        MatchesScreen()
             .environmentObject(ScoreCounterStore())
     }
 }
