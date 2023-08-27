@@ -16,12 +16,3 @@ struct Match: Identifiable {
     let rounds: [Round]
     let winner: Player?
 }
-
-struct Round {
-    let scores: [Score]
-}
-
-struct Score {
-    let player: Player
-    let score: UInt
-}

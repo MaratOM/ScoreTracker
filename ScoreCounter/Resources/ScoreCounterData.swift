@@ -26,13 +26,28 @@ struct ScoreCounterData {
 
     struct Matches {
         static let match1Players = [Players.me, Players.george, Players.ringo]
+        static let match1Rounds: [Round] = [
+            .init(
+                scores: [
+                    .init(player: match1Players[0], score: 11),
+                    .init(player: match1Players[1], score: 23),
+                    .init(player: match1Players[2], score: 32),
+                ]
+            ),
+            .init(
+                scores: [
+                    .init(player: match1Players[0], score: 2),
+                    .init(player: match1Players[1], score: 35),
+                    .init(player: match1Players[2], score: 52),                ]
+            ),
+        ]
         static let match1 = Match(
             id: UUID(),
             game: Games.uno,
             date: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!,
             players: match1Players,
-            winScore: 300,
-            rounds: [],
+            winScore: 400,
+            rounds: match1Rounds,
             winner: nil
         )
         
@@ -43,6 +58,7 @@ struct ScoreCounterData {
                     .init(player: match2Players[0], score: 104),
                     .init(player: match2Players[1], score: 123),
                     .init(player: match2Players[2], score: 156),
+                    .init(player: match2Players[3], score: 56),
                 ]
             ),
             .init(
@@ -50,13 +66,15 @@ struct ScoreCounterData {
                     .init(player: match2Players[0], score: 91),
                     .init(player: match2Players[1], score: 34),
                     .init(player: match2Players[2], score: 103),
+                    .init(player: match2Players[3], score: 79),
                 ]
             ),
             .init(
                 scores: [
                     .init(player: match2Players[0], score: 40),
                     .init(player: match2Players[1], score: 110),
-                    .init(player: match2Players[2], score: 23),
+                    .init(player: match2Players[2], score: 67),
+                    .init(player: match2Players[3], score: 134),
                 ]
             ),
             .init(
@@ -64,6 +82,7 @@ struct ScoreCounterData {
                     .init(player: match2Players[0], score: 56),
                     .init(player: match2Players[1], score: 41),
                     .init(player: match2Players[2], score: 112),
+                    .init(player: match2Players[3], score: 97),
                 ]
             ),
         ]

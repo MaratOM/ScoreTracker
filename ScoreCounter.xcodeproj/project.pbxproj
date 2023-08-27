@@ -28,6 +28,9 @@
 		0CEBFF222A9A796D003C7FE5 /* MatchesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF212A9A796D003C7FE5 /* MatchesScreen.swift */; };
 		0CEBFF242A9A83EA003C7FE5 /* ScoreCounterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF232A9A83EA003C7FE5 /* ScoreCounterData.swift */; };
 		0CEBFF282A9B309C003C7FE5 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */; };
+		0CEBFF2A2A9B461D003C7FE5 /* MatchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF292A9B461D003C7FE5 /* MatchScreen.swift */; };
+		0CEBFF2C2A9B49AD003C7FE5 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF2B2A9B49AD003C7FE5 /* Round.swift */; };
+		0CEBFF2E2A9B49B9003C7FE5 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBFF2D2A9B49B9003C7FE5 /* Score.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		0CEBFF212A9A796D003C7FE5 /* MatchesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesScreen.swift; sourceTree = "<group>"; };
 		0CEBFF232A9A83EA003C7FE5 /* ScoreCounterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCounterData.swift; sourceTree = "<group>"; };
 		0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		0CEBFF292A9B461D003C7FE5 /* MatchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchScreen.swift; sourceTree = "<group>"; };
+		0CEBFF2B2A9B49AD003C7FE5 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		0CEBFF2D2A9B49B9003C7FE5 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				0CEBFF1F2A9A75A4003C7FE5 /* Match.swift */,
+				0CEBFF2B2A9B49AD003C7FE5 /* Round.swift */,
+				0CEBFF2D2A9B49B9003C7FE5 /* Score.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				0CEBFF212A9A796D003C7FE5 /* MatchesScreen.swift */,
+				0CEBFF292A9B461D003C7FE5 /* MatchScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -319,9 +328,11 @@
 				0CEBFF222A9A796D003C7FE5 /* MatchesScreen.swift in Sources */,
 				0CE89A9B29B38671001F4232 /* PlayerScreen.swift in Sources */,
 				0C09022F29B912FB006010F7 /* AddItemView.swift in Sources */,
+				0CEBFF2E2A9B49B9003C7FE5 /* Score.swift in Sources */,
 				0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */,
 				0C6A4FE729B10F1100A37818 /* ContentView.swift in Sources */,
 				0CEBFF282A9B309C003C7FE5 /* MatchCell.swift in Sources */,
+				0CEBFF2A2A9B461D003C7FE5 /* MatchScreen.swift in Sources */,
 				0CE89AA429B3A7E1001F4232 /* GameType.swift in Sources */,
 				0CEBFF202A9A75A4003C7FE5 /* Match.swift in Sources */,
 				0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */,
@@ -329,6 +340,7 @@
 				0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */,
 				0CE89A9F29B3A723001F4232 /* Player.swift in Sources */,
 				0CE89A9429B380A0001F4232 /* AddPlayerScreen.swift in Sources */,
+				0CEBFF2C2A9B49AD003C7FE5 /* Round.swift in Sources */,
 				0C09023329B91554006010F7 /* AddGameScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

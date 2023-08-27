@@ -30,6 +30,14 @@ struct MatchCell: View {
             HStack {
                 Text("Players: \(match.players.count)")
                 Spacer()
+            }
+            HStack {
+                if let winner = match.winner {
+                    Text("Winner: \(winner.name)")
+                    Spacer()
+                }
+            }
+            HStack {
                 Text("My place: \(myPlace(match: match))")
                 Spacer()
                 Label("", systemImage:
@@ -37,6 +45,7 @@ struct MatchCell: View {
                       ? "clock.badge.checkmark"
                       : "clock"
                 )
+                .foregroundColor(match.winner != nil ? .red : .green)
             }
         }
     }
@@ -46,6 +55,6 @@ struct MatchCell_Previews: PreviewProvider {
     static let store = ScoreCounterStore()
 
     static var previews: some View {
-        MatchCell(match: store.matches[0])
+        MatchCell(match: store.matches[1])
     }
 }

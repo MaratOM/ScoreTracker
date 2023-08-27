@@ -21,8 +21,7 @@ struct MatchesScreen: View {
                     LazyVGrid(columns: columns, alignment: .leading) {
                         ForEach(matches) { match in
                             NavigationLink {
-                                Text(match.game.name)
-                                    .font(.system(size: 40))
+                                MatchScreen(match: match)
                             } label: {
                                 MatchCell(match: match)
                                 Spacer()
