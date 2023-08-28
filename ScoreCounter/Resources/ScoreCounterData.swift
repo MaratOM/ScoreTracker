@@ -38,7 +38,8 @@ struct ScoreCounterData {
                 scores: [
                     .init(player: match1Players[0], score: 2),
                     .init(player: match1Players[1], score: 35),
-                    .init(player: match1Players[2], score: 52),                ]
+                    .init(player: match1Players[2], score: 52),
+                ]
             ),
         ]
         static let match1 = Match(
@@ -46,7 +47,7 @@ struct ScoreCounterData {
             game: Games.uno,
             date: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!,
             players: match1Players,
-            winScore: 400,
+            winScore: 300,
             rounds: match1Rounds,
             winner: nil
         )
@@ -58,7 +59,7 @@ struct ScoreCounterData {
                     .init(player: match2Players[0], score: 104),
                     .init(player: match2Players[1], score: 123),
                     .init(player: match2Players[2], score: 156),
-                    .init(player: match2Players[3], score: 56),
+                    .init(player: match2Players[3], score: 45),
                 ]
             ),
             .init(
@@ -91,7 +92,7 @@ struct ScoreCounterData {
             game: Games.uno,
             date: Calendar.current.date(byAdding: .day, value: -10, to: Date())!,
             players: match2Players,
-            winScore: 300,
+            winScore: 400,
             rounds: match2Rounds,
             winner: match2Players[2]
         )

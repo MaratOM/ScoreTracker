@@ -30,4 +30,6 @@ final class ScoreCounterStore: ObservableObject {
     ]
     
     @Published var chosenAvatar = ""
+    
+    @Published var roundToAdd: [Player: Int] = [:]
 }

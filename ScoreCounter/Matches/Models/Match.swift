@@ -7,12 +7,16 @@
 
 import Foundation
 
-struct Match: Identifiable {
+struct Match: Identifiable, Equatable {
+    static func == (lhs: Match, rhs: Match) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: UUID
     let game: Game
     let date: Date
     let players: [Player]
     let winScore: UInt
-    let rounds: [Round]
+    var rounds: [Round]
     let winner: Player?
 }

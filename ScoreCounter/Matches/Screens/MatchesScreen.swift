@@ -21,7 +21,7 @@ struct MatchesScreen: View {
                     LazyVGrid(columns: columns, alignment: .leading) {
                         ForEach(matches) { match in
                             NavigationLink {
-                                MatchScreen(match: match)
+                                MatchScreen(chosenMatch: match)
                             } label: {
                                 MatchCell(match: match)
                                 Spacer()

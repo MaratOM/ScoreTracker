@@ -8,109 +8,127 @@
 import SwiftUI
 
 struct MatchScreen: View {
-    let match: Match
-    var playersScores: [Int] {
-        match.players.map { playerScore(player: $0) }
-    }
-    var gameStatus: some View {
-        var status = "active"
-        var foregroundColor = Color.green
-        var systemImage = "clock"
-        
-        if match.winner != nil {
-            status = "closed"
-            foregroundColor = Color.red
-            systemImage = "clock.badge.checkmark"
-        }
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var store: ScoreCounterStore
+    @State private var isModal = false
+    let chosenMatch: Match
 
-        return Label(status, systemImage: systemImage)
-            .foregroundColor(foregroundColor)
-    }
-    
-    func getDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        return dateFormatter.string(from: match.date)
-    }
-    
-    func playerScore(player: Player) -> Int {
-        var num = 0
-        
-        for round in match.rounds {
-            for score in round.scores {
-                if score.player == player {
-                    num += score.score
-                }
-            }
-        }
-        
-        return num
-    }
-    
-    func getPlayerPlace(index: Int) -> Int {
-        (playersScores
-            .sorted()
-            .reversed()
-            .firstIndex { $0 == playersScores[index] } ?? 0
-        ) + 1
-    }
-    
-    func getPlayersPlaceImage(place: Int) -> some View {
-        var systemImage = ""
-        var foregroundColor = Color.green
-
-        if place == 1 {
-            systemImage = "crown.fill"
-            foregroundColor = .yellow
-        } else {
-            systemImage = "\(place).circle"
-        }
-
-        return Label("", systemImage: systemImage)
-            .foregroundColor(foregroundColor)
-    }
-    
-    func getRounds() -> some View {
-        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: match.players.count)
-        
-        return ScrollView {
-            VStack {
-                LazyVGrid(columns: columns, alignment: .center) {
-                    ForEach(match.players) { player in
-                        Text("\(player.avatar)")
-                    }
-                }
-                LazyVGrid(columns: columns, alignment: .center) {
-                    ForEach(match.players) { player in
-                        Text("\(player.name)")
-                    }
-                }
-                LazyVGrid(columns: columns, alignment: .center) {
-                    ForEach(match.players.indices, id: \.self) { index in
-                        getPlayersPlaceImage(place: getPlayerPlace(index: index))
-                    }
-                }
-                LazyVGrid(columns: columns, alignment: .center) {
-                    ForEach(match.players.indices, id: \.self) { index in
-                        Text("\(playersScores[index])")
-                            .bold()
-                    }
-                }
-                LazyVGrid(columns: columns, alignment: .center) {
-                    ForEach(match.rounds) { round in
-                        ForEach(round.scores) { score in
-                            Text("\(score.score)")
-                        }
-                    }
-                }
-                .padding(.top, 6)
-            }
-            .padding(.top, 0)
-        }
-    }
 
     var body: some View {
-        VStack(spacing: 6){
+        var index = store.matches.firstIndex(where: { $0 == chosenMatch }) ?? 0
+        var match = store.matches[index]
+        var playersScores = getPlayersScores()
+        var gameStatus: some View {
+            var status = "active"
+            var foregroundColor = Color.green
+            var systemImage = "clock"
+            
+            if match.winner != nil {
+                status = "closed"
+                foregroundColor = Color.red
+                systemImage = "clock.badge.checkmark"
+            }
+
+            return Label(status, systemImage: systemImage)
+                .foregroundColor(foregroundColor)
+        }
+        var allScores: [Int] {
+            var scores: [Int] = []
+            for round in match.rounds {
+                for score in round.scores {
+                    scores.append(score.score)
+                }
+            }
+            return scores
+        }
+        
+        func getDate() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            return dateFormatter.string(from: match.date)
+        }
+        
+        func playerScore(player: Player) -> Int {
+            var num = 0
+            
+            for round in match.rounds {
+                for score in round.scores {
+                    if score.player == player {
+                        num += score.score
+                    }
+                }
+            }
+            
+            return num
+        }
+        
+        func getPlayersScores() -> [Int] {
+            match.players.map { playerScore(player: $0) }
+        }
+        
+        func getPlayerPlace(index: Int) -> Int {
+            (playersScores
+                .sorted()
+                .reversed()
+                .firstIndex { $0 == playersScores[index] } ?? 0
+            ) + 1
+        }
+        
+        func getPlayersPlaceImage(place: Int) -> some View {
+            var systemImage = ""
+            var foregroundColor = Color.green
+
+            if place == 1 {
+                systemImage = "crown.fill"
+                foregroundColor = .yellow
+            } else {
+                systemImage = "\(place).circle"
+            }
+
+            return Label("", systemImage: systemImage)
+                .foregroundColor(foregroundColor)
+        }
+        
+        func getRounds() -> some View {
+            let columns: [GridItem] = Array(repeating: .init(.flexible()), count: match.players.count)
+            
+            return ScrollView {
+                VStack {
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(match.players) { player in
+                            Text("\(player.avatar)")
+                                .font(.system(size: 28))
+                        }
+                    }
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(match.players) { player in
+                            Text("\(player.name)")
+                        }
+                    }
+                    .padding(.top, -10)
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(match.players.indices, id: \.self) { index in
+                            getPlayersPlaceImage(place: getPlayerPlace(index: index))
+                        }
+                    }
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(match.players.indices, id: \.self) { index in
+                            Text("\(playersScores[index])")
+                                .bold()
+                        }
+                    }
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(allScores, id: \.self) { score in
+                            Text("\(score)")
+                        }
+                    }
+                    .padding(.top, 6)
+                }
+                .padding(.top, 0)
+            }
+        }
+        
+        return VStack(spacing: 6){
             HStack() {
                 Text("Game:")
                     .bold()
@@ -162,10 +180,30 @@ struct MatchScreen: View {
             
             Spacer()
             
-            AddItemView(linkView: AddGameScreen())
+            Button {
+                isModal.toggle()
+            } label: {
+                Label("text", systemImage: "plus.circle")
+                    .font(.system(size: 50))
+                    .foregroundColor(.blue)
+                    .labelStyle(.iconOnly)
+            }
+            .sheet(isPresented: $isModal) {
+                if #available(iOS 16.0, *) {
+                    AddRoundScreen(match: match)
+                        .presentationDetents([.medium])
+                } else {
+                    AddRoundScreen(match: match)
+                }
+            }
         }
         .navigationTitle("Match")
         .padding()
+        .onAppear {
+            let index = store.matches.firstIndex(where: { $0 == chosenMatch }) ?? 0
+            match = store.matches[index]
+            playersScores = getPlayersScores()
+        }
     }
 }
 
@@ -173,6 +211,6 @@ struct MatchScreen_Previews: PreviewProvider {
     static let store = ScoreCounterStore()
     
     static var previews: some View {
-        MatchScreen(match: store.matches[1])
+        MatchScreen(chosenMatch: store.matches[1])
     }
 }
