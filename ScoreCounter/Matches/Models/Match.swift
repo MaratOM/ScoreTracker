@@ -18,5 +18,5 @@ struct Match: Identifiable, Equatable {
     let players: [Player]
     let winScore: UInt
     var rounds: [Round]
-    let winner: Player?
+    var winner: Player?
 }

@@ -11,19 +11,17 @@ struct MatchesScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
 
     var body: some View {
-        let matches = store.matches
-
         NavigationView {
             VStack {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
                 
                 ScrollView {
                     LazyVGrid(columns: columns, alignment: .leading) {
-                        ForEach(matches) { match in
+                        ForEach(store.matches) { match in
                             NavigationLink {
                                 MatchScreen(chosenMatch: match)
                             } label: {
-                                MatchCell(match: match)
+                                MatchCell(chosenMatch: match)
                                 Spacer()
                                 Label("", systemImage: "chevron.right")
                             }

@@ -14,8 +14,37 @@ struct AddRoundScreen: View {
 
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+        
+        func getLeader(index: Int) -> Score? {
+            let scores: [Score] = store.matches[index].players.map { .init(player: $0, score: playerScore(index: index, player: $0))}
+            var leader: Player?
+            var maxScore = 0
 
-        VStack {
+            for score in scores {
+                if score.score > maxScore {
+                    maxScore = score.score
+                    leader = score.player
+                }
+            }
+            
+            return scores.first(where: { $0.player == leader })
+        }
+        
+        func playerScore(index: Int, player: Player) -> Int {
+            var num = 0
+            
+            for round in store.matches[index].rounds {
+                for score in round.scores {
+                    if score.player == player {
+                        num += score.score
+                    }
+                }
+            }
+            
+            return num
+        }
+
+        return VStack {
             HStack {
                 Spacer()
                 Button {
@@ -67,9 +96,13 @@ struct AddRoundScreen: View {
                             let player2Index = match.players.firstIndex(where: { $0 == score2.player}) ?? 0
                             return player1Index < player2Index
                         })
-                        
+                                                
                         store.matches[index].rounds.append(.init(scores: scores))
                         store.roundToAdd = [:]
+                        
+                        if let leader = getLeader(index: index), leader.score >= match.winScore {
+                            store.matches[index].winner = leader.player
+                        }
                     }
                     dismiss()
                 } label: {

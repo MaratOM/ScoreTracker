@@ -13,11 +13,12 @@ struct MatchScreen: View {
     @State private var isModal = false
     let chosenMatch: Match
 
-
     var body: some View {
-        var index = store.matches.firstIndex(where: { $0 == chosenMatch }) ?? 0
-        var match = store.matches[index]
-        var playersScores = getPlayersScores()
+        let index = store.matches.firstIndex(where: { $0 == chosenMatch }) ?? 0
+        let match = store.matches[index]
+        var playersScores: [Int] {
+            match.players.map { playerScore(player: $0) }
+        }
         var gameStatus: some View {
             var status = "active"
             var foregroundColor = Color.green
@@ -60,10 +61,6 @@ struct MatchScreen: View {
             }
             
             return num
-        }
-        
-        func getPlayersScores() -> [Int] {
-            match.players.map { playerScore(player: $0) }
         }
         
         func getPlayerPlace(index: Int) -> Int {
@@ -114,7 +111,8 @@ struct MatchScreen: View {
                     LazyVGrid(columns: columns, alignment: .center) {
                         ForEach(match.players.indices, id: \.self) { index in
                             Text("\(playersScores[index])")
-                                .bold()
+                                .id("\(playersScores[index])-\(index)")
+                                .font(Font.headline.weight(.bold))
                         }
                     }
                     LazyVGrid(columns: columns, alignment: .center) {
@@ -180,30 +178,27 @@ struct MatchScreen: View {
             
             Spacer()
             
-            Button {
-                isModal.toggle()
-            } label: {
-                Label("text", systemImage: "plus.circle")
-                    .font(.system(size: 50))
-                    .foregroundColor(.blue)
-                    .labelStyle(.iconOnly)
-            }
-            .sheet(isPresented: $isModal) {
-                if #available(iOS 16.0, *) {
-                    AddRoundScreen(match: match)
-                        .presentationDetents([.medium])
-                } else {
-                    AddRoundScreen(match: match)
+            if match.winner == nil {
+                Button {
+                    isModal.toggle()
+                } label: {
+                    Label("text", systemImage: "plus.circle")
+                        .font(.system(size: 50))
+                        .foregroundColor(.blue)
+                        .labelStyle(.iconOnly)
+                }
+                .sheet(isPresented: $isModal) {
+                    if #available(iOS 16.0, *) {
+                        AddRoundScreen(match: match)
+                            .presentationDetents([.medium])
+                    } else {
+                        AddRoundScreen(match: match)
+                    }
                 }
             }
         }
         .navigationTitle("Match")
         .padding()
-        .onAppear {
-            let index = store.matches.firstIndex(where: { $0 == chosenMatch }) ?? 0
-            match = store.matches[index]
-            playersScores = getPlayersScores()
-        }
     }
 }
 
