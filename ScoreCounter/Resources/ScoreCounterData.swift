@@ -49,7 +49,7 @@ struct ScoreCounterData {
             date: format.date(from: "2023-08-25T13:31:46+0000")!,
             endDate: nil,
             players: match1Players,
-            winScore: 300,
+            winScore: 200,
             rounds: match1Rounds,
             winner: nil
         )

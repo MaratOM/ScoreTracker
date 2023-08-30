@@ -22,18 +22,18 @@ struct MatchScreen: View {
             match.players.map { playerScore(player: $0) }
         }
         var gameStatus: some View {
-            var status = "active"
             var foregroundColor = Color.green
-            var systemImage = "clock"
+            var angleDegrees = 180
             
             if match.winner != nil {
-                status = "finished"
                 foregroundColor = Color.red
-                systemImage = "clock.badge.checkmark"
+                angleDegrees = 0
             }
 
-            return Label(status, systemImage: systemImage)
+            return Image(systemName: "hourglass.bottomhalf.filled")
+                .font(.system(size: 20))
                 .foregroundColor(foregroundColor)
+                .rotationEffect(.init(degrees: Double(angleDegrees)))
         }
         var allScores: [Int] {
             var scores: [Int] = []

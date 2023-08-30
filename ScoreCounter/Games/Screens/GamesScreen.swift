@@ -21,8 +21,12 @@ struct GamesScreen: View {
                     LazyVGrid(columns: columns, alignment: .leading) {
                         ForEach(games) { game in
                             NavigationLink {
-                                Text(game.name)
-                                    .font(.system(size: 40))
+                                VStack {
+                                    Image(systemName: game.type.imageName)
+                                        .font(.system(size: 40))
+                                    Text(game.name)
+                                        .font(.system(size: 40))
+                                }
                             } label: {
                                 Label(game.name, systemImage: game.type.imageName)
                                 Spacer()

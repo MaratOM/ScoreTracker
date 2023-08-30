@@ -42,12 +42,10 @@ struct MatchCell: View {
             HStack {
                 Text("Winning score: \(match.winScore)")
                 Spacer()
-                Image(systemName:
-                      match.winner != nil
-                      ? "clock.badge.checkmark"
-                      : "clock"
-                )
-                .foregroundColor(match.winner != nil ? .red : .green)
+                Image(systemName: "hourglass.bottomhalf.filled")
+                    .font(.system(size: 16))
+                    .rotationEffect(.init(degrees: Double(match.winner == nil ? 180 : 0)))
+                    .foregroundColor(match.winner != nil ? .red : .green)
             }
         }
     }
