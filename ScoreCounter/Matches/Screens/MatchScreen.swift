@@ -27,7 +27,7 @@ struct MatchScreen: View {
             var systemImage = "clock"
             
             if match.winner != nil {
-                status = "closed"
+                status = "finished"
                 foregroundColor = Color.red
                 systemImage = "clock.badge.checkmark"
             }
@@ -47,8 +47,36 @@ struct MatchScreen: View {
         
         func getDate() -> String {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
+            dateFormatter.dateFormat = "HH:mm dd.MM.yy"
             return dateFormatter.string(from: match.date)
+        }
+        
+        func getDuration() -> String {
+            var dateTo = Date()
+
+            if let endDate = store.matches[index].endDate {
+                dateTo = endDate
+            }
+            
+            let diffComponents = Calendar.current.dateComponents([.hour, .minute], from: store.matches[index].date, to: dateTo)
+            let hours = diffComponents.hour
+            let minutes = diffComponents.minute
+            var duration = ""
+            if let hours = hours, let minutes = minutes {
+                if hours > 24 {
+                    duration = "> day"
+                } else if hours == 0 {
+                    if minutes == 0 {
+                        duration = "< minute"
+                    } else {
+                        duration = "\(minutes)m"
+                    }
+                } else {
+                    duration = "\(hours)h \(minutes)m"
+                }
+            }
+
+            return duration
         }
         
         func playerScore(player: Player) -> Int {
@@ -139,10 +167,12 @@ struct MatchScreen: View {
                 gameStatus
             }
             HStack() {
-                Text("Date:")
+                Text("Start time:")
                     .bold()
                 Text("\(getDate())")
                 Spacer()
+                Label(getDuration(), systemImage: "clock")
+                    .foregroundColor(.green)
             }
             HStack() {
                 Text("Winning score:")

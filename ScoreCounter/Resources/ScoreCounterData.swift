@@ -25,6 +25,7 @@ struct ScoreCounterData {
     }
 
     struct Matches {
+        static let format = ISO8601DateFormatter()
         static let match1Players = [Players.me, Players.george, Players.ringo]
         static let match1Rounds: [Round] = [
             .init(
@@ -45,7 +46,8 @@ struct ScoreCounterData {
         static let match1 = Match(
             id: UUID(),
             game: Games.uno,
-            date: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!,
+            date: format.date(from: "2023-08-25T13:31:46+0000")!,
+            endDate: nil,
             players: match1Players,
             winScore: 300,
             rounds: match1Rounds,
@@ -87,10 +89,13 @@ struct ScoreCounterData {
                 ]
             ),
         ]
+        static let date = format.date(from: "2023-08-20T19:25:46+0000")!
+        static let endDate = format.date(from: "2023-08-20T20:41:46+0000")!
         static let match2 = Match(
             id: UUID(),
             game: Games.uno,
-            date: Calendar.current.date(byAdding: .day, value: -10, to: Date())!,
+            date: date,
+            endDate: endDate,
             players: match2Players,
             winScore: 400,
             rounds: match2Rounds,

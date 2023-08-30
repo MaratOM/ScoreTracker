@@ -111,6 +111,7 @@ struct AddMatchScreen: View {
                             id: UUID(),
                             game: store.games.first(where: { $0.name == store.chosenGameName}) ?? store.games[0],
                             date: Date(),
+                            endDate: nil,
                             players: store.chosenPlayers,
                             winScore: store.scoreToWin,
                             rounds: []

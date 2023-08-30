@@ -15,6 +15,7 @@ struct Match: Identifiable, Equatable {
     let id: UUID
     let game: Game
     let date: Date
+    let endDate: Date?
     let players: [Player]
     var winScore: Int
     var rounds: [Round]

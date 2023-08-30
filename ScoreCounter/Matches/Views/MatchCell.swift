@@ -17,7 +17,7 @@ struct MatchCell: View {
         
         func getDate() -> String {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
+            dateFormatter.dateFormat = "dd.MM.yy"
             return dateFormatter.string(from: match.date)
         }
 
