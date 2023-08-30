@@ -26,7 +26,7 @@ struct GamesScreen: View {
                             } label: {
                                 Label(game.name, systemImage: game.type.imageName)
                                 Spacer()
-                                Label("", systemImage: "chevron.right")               
+                                Image(systemName: "chevron.right")
                             }
                             .padding(.bottom, 10)
                         }

@@ -82,8 +82,9 @@ struct MatchScreen: View {
                 systemImage = "\(place).circle"
             }
 
-            return Label("", systemImage: systemImage)
+            return Image(systemName: systemImage)
                 .foregroundColor(foregroundColor)
+                .font(.system(size: 24))
         }
         
         func getRounds() -> some View {
@@ -94,9 +95,10 @@ struct MatchScreen: View {
                     LazyVGrid(columns: columns, alignment: .center) {
                         ForEach(match.players) { player in
                             Text("\(player.avatar)")
-                                .font(.system(size: 28))
+                                .font(.system(size: 34))
                         }
                     }
+                    .padding(.top, 6)
                     LazyVGrid(columns: columns, alignment: .center) {
                         ForEach(match.players) { player in
                             Text("\(player.name)")
@@ -120,7 +122,7 @@ struct MatchScreen: View {
                             Text("\(score)")
                         }
                     }
-                    .padding(.top, 6)
+                    .padding(.top, 8)
                 }
                 .padding(.top, 0)
             }
@@ -203,8 +205,7 @@ struct MatchScreen: View {
 }
 
 struct MatchScreen_Previews: PreviewProvider {
-    static let store = ScoreCounterStore()
-    
+    static let store = ScoreCounterStore()    
     static var previews: some View {
         MatchScreen(chosenMatch: store.matches[1])
     }

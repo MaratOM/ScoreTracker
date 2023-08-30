@@ -14,6 +14,7 @@ struct ContentView: View {
         case matches
         case games
         case players
+        case statistics
     }
     
     var body: some View {
@@ -32,7 +33,12 @@ struct ContentView: View {
                 .tag(Tab.players)
                 .tabItem {
                     Label("Players", systemImage: "person")
-                }            
+                }
+            StatisticsScreen()
+                .tag(Tab.statistics)
+                .tabItem {
+                    Label("Statistics", systemImage: "chart.bar.xaxis")
+                }
         }
     }
 }

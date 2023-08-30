@@ -20,10 +20,6 @@ struct MatchCell: View {
             dateFormatter.dateFormat = "dd.MM.yyyy"
             return dateFormatter.string(from: match.date)
         }
-        
-        func myPlace(match: Match) -> Int {
-            (match.players.firstIndex { $0.name == "Me" } ?? 1) + 1
-        }
 
         return VStack {
             HStack {
@@ -38,13 +34,15 @@ struct MatchCell: View {
             HStack {
                 if let winner = match.winner {
                     Text("Winner: \(winner.name)")
+                    Image(systemName: "crown.fill")
+                        .foregroundColor(.yellow)
                     Spacer()
                 }
             }
             HStack {
-                Text("My place: \(myPlace(match: match))")
+                Text("Score to win: \(match.winScore)")
                 Spacer()
-                Label("", systemImage:
+                Image(systemName:
                       match.winner != nil
                       ? "clock.badge.checkmark"
                       : "clock"

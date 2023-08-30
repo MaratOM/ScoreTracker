@@ -13,10 +13,11 @@ final class ScoreCounterStore: ObservableObject {
     @Published var games: [Game] = [
         ScoreCounterData.Games.uno,
         ScoreCounterData.Games.domino,
-        ScoreCounterData.Games.chess,
+        ScoreCounterData.Games.cards,
     ]
     
     @Published var players: [Player] = [
+        ScoreCounterData.Players.me,
         ScoreCounterData.Players.john,
         ScoreCounterData.Players.paul,
         ScoreCounterData.Players.george,
@@ -30,6 +31,11 @@ final class ScoreCounterStore: ObservableObject {
     ]
     
     @Published var chosenAvatar = ""
+
+    @Published var chosenGameName = "Uno"
+    @Published var chosenGameDefaultName = "Uno"
+    @Published var chosenPlayers = [Player]()
+    @Published var scoreToWin = 0
     
     @Published var roundToAdd: [Player: Int] = [:]
 }

@@ -8,7 +8,7 @@
 enum GameType: CaseIterable {
     case up
     case down
-    case single
+//    case single
     
     var imageName: String {
         switch self {
@@ -16,8 +16,8 @@ enum GameType: CaseIterable {
             return "arrow.up.square"
         case .down:
             return "arrow.down.square"
-        case .single:
-            return "scope"
+//        case .single:
+//            return "scope"
         }
     }
     
@@ -27,8 +27,8 @@ enum GameType: CaseIterable {
             return "max wins"
         case .down:
             return "min wins"
-        case .single:
-            return "one game - one point"
+//        case .single:
+//            return "one game - one point"
         }
     }
 }

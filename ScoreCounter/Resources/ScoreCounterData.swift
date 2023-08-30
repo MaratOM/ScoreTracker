@@ -13,7 +13,7 @@ struct ScoreCounterData {
     struct Games {
         static let uno = Game(name: "Uno", type: .up)
         static let domino = Game(name: "Domino", type: .down)
-        static let chess = Game(name: "Chess", type: .single)
+        static let cards = Game(name: "Cards", type: .up)
     }
     
     struct Players {

@@ -23,7 +23,7 @@ struct MatchesScreen: View {
                             } label: {
                                 MatchCell(chosenMatch: match)
                                 Spacer()
-                                Label("", systemImage: "chevron.right")
+                                Image(systemName: "chevron.right")
                             }
                             .padding(.bottom, 10)
                         }
@@ -31,7 +31,7 @@ struct MatchesScreen: View {
                     .padding()
                 }
 
-                AddItemView(linkView: AddGameScreen())
+                AddItemView(linkView: AddMatchScreen())
             }
             .navigationTitle("Matches")
         }
