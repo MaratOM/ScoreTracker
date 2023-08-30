@@ -11,6 +11,8 @@ struct MatchScreen: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var store: ScoreCounterStore
     @State private var isModal = false
+    @State private var editWinScore = false
+
     let chosenMatch: Match
 
     var body: some View {
@@ -143,10 +145,37 @@ struct MatchScreen: View {
                 Spacer()
             }
             HStack() {
-                Text("Score to win:")
+                Text("Winning score:")
                     .bold()
-                Text("\(match.winScore)")
+                Text("\(store.matches[index].winScore)")
                 Spacer()
+                if match.winner == nil {
+                    if !editWinScore {
+                        Button {
+                            editWinScore.toggle()
+                        } label: {
+                            Image(systemName: "pencil.circle")
+                                .font(.system(size: 24))
+                        }
+                    } else {
+                        let step = store.matches[index].winScore > 99 ? 10 : 1
+                        Stepper(
+                            "",
+                            value: $store.matches[index].winScore,
+                            in: (playersScores.max() ?? 0)...100000,
+                            step: step
+                        )
+                        .frame(height: 20)
+                        
+                        Button {
+                            editWinScore.toggle()
+                        } label: {
+                            Image(systemName: "checkmark.circle")
+                                .font(.system(size: 24))
+                                .foregroundColor(.green)
+                        }
+                    }
+                }
             }
             HStack() {
                 Text("Players:")

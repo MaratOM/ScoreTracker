@@ -89,7 +89,7 @@ struct AddMatchScreen: View {
             }
             
             HStack {
-                Text("Score to win:")
+                Text("Winning score:")
                     .bold()
                 TextField("enter score", text: binding)
                     .onReceive(Just(score)) { newValue in

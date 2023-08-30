@@ -40,7 +40,7 @@ struct MatchCell: View {
                 }
             }
             HStack {
-                Text("Score to win: \(match.winScore)")
+                Text("Winning score: \(match.winScore)")
                 Spacer()
                 Image(systemName:
                       match.winner != nil
