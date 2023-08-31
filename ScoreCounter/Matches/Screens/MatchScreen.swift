@@ -148,8 +148,8 @@ struct MatchScreen: View {
                         }
                     }
                     LazyVGrid(columns: columns, alignment: .center) {
-                        ForEach(allScores, id: \.self) { score in
-                            Text("\(score)")
+                        ForEach(allScores.indices, id: \.self) { index in
+                            Text("\(allScores[index])")
                         }
                     }
                     .padding(.top, 8)
@@ -266,6 +266,7 @@ struct MatchScreen: View {
 struct MatchScreen_Previews: PreviewProvider {
     static let store = ScoreCounterStore()    
     static var previews: some View {
-        MatchScreen(chosenMatch: store.matches[1])
+        MatchScreen(chosenMatch: store.matches[0])
+            .environmentObject(store)
     }
 }
