@@ -10,24 +10,24 @@ import SwiftUI
 struct AddGameScreen: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var store: ScoreCounterStore
-    @State private var type: GameType = .up
+    @State private var type: GameType = .down
     @State private var name = ""
     
     func clearData() {
-        type = .up
+        type = .down
         name = ""
     }
 
     var body: some View {
         VStack {
-//            Picker(selection: $type) {
-//                ForEach(GameType.allCases, id: \.self) {
-//                    Image(systemName: $0.imageName).tag($0)    
-//                }
-//            } label: {
-//                Text("Picker Name")
-//            }
-//            .pickerStyle(.segmented)
+            Picker(selection: $type) {
+                ForEach(GameType.allCases, id: \.self) {
+                    Image(systemName: $0.imageName).tag($0)    
+                }
+            } label: {
+                Text("Picker Name")
+            }
+            .pickerStyle(.segmented)
             
             Text("\(type.description)")
             
