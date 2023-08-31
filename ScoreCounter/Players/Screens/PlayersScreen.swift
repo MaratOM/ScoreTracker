@@ -32,6 +32,7 @@ struct PlayersScreen: View {
                 AddItemView(linkView: AddPlayerScreen())
             }
             .navigationTitle("Players")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

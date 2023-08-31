@@ -34,6 +34,7 @@ struct MatchesScreen: View {
                 AddItemView(linkView: AddMatchScreen())
             }
             .navigationTitle("Matches")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

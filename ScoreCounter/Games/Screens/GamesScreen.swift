@@ -41,6 +41,7 @@ struct GamesScreen: View {
                 AddItemView(linkView: AddGameScreen())
             }
             .navigationTitle("Games")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

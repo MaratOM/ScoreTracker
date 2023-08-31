@@ -9,12 +9,16 @@ import SwiftUI
 
 struct StatisticsScreen: View {
     var body: some View {
-        VStack {
-            Text("Statistics")
-                .font(.system(size: 30))
-                .padding(.bottom, 16)
-            Image(systemName: "chart.bar.xaxis")
-                .font(.system(size: 50))
+        NavigationView {
+            VStack {
+                Text("Statistics")
+                    .font(.system(size: 30))
+                    .padding(.bottom, 16)
+                Image(systemName: "chart.bar.xaxis")
+                    .font(.system(size: 50))
+            }
+            .navigationTitle("Players")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
