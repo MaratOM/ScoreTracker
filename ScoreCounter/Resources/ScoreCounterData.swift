@@ -12,7 +12,7 @@ import Foundation
 struct ScoreCounterData {
     struct Games {
         static let uno = Game(name: "Uno", type: .up)
-        static let domino = Game(name: "Domino", type: .down)
+        static let domino = Game(name: "Domino", type: .up)
         static let cards = Game(name: "Cards", type: .up)
     }
     
