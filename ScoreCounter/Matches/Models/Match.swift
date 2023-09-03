@@ -12,7 +12,7 @@ struct Match: Identifiable, Equatable {
         lhs.id == rhs.id
     }
     
-    let id: UUID
+    var id: UUID = UUID()
     let game: Game
     let date: Date
     let endDate: Date?

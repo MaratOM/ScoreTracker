@@ -44,7 +44,6 @@ struct ScoreCounterData {
             ),
         ]
         static let match1 = Match(
-            id: UUID(),
             game: Games.uno,
             date: format.date(from: "2023-08-25T13:31:46+0000")!,
             endDate: nil,
@@ -92,7 +91,6 @@ struct ScoreCounterData {
         static let date = format.date(from: "2023-08-20T19:25:46+0000")!
         static let endDate = format.date(from: "2023-08-20T20:41:46+0000")!
         static let match2 = Match(
-            id: UUID(),
             game: Games.uno,
             date: date,
             endDate: endDate,

@@ -108,7 +108,6 @@ struct AddMatchScreen: View {
                 Button {
                     store.matches.append(
                         .init(
-                            id: UUID(),
                             game: store.games.first(where: { $0.name == store.chosenGameName}) ?? store.games[0],
                             date: Date(),
                             endDate: nil,
