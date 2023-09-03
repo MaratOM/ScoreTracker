@@ -11,15 +11,13 @@ struct GamesScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
 
     var body: some View {
-        let games = store.games
-
         NavigationView {
             VStack {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
                 
                 ScrollView {
                     LazyVGrid(columns: columns, alignment: .leading) {
-                        ForEach(games) { game in
+                        ForEach(store.games) { game in
                             NavigationLink {
                                 VStack {
                                     Image(systemName: game.type.imageName)
