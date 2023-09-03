@@ -21,6 +21,7 @@
 		0CAA70C62A9E3A2C00E01C7E /* ChooseGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA70C52A9E3A2C00E01C7E /* ChooseGameScreen.swift */; };
 		0CAA70C82A9E587800E01C7E /* ChoosePlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA70C72A9E587800E01C7E /* ChoosePlayerScreen.swift */; };
 		0CAA70CC2A9E7C7500E01C7E /* StatisticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA70CB2A9E7C7500E01C7E /* StatisticsScreen.swift */; };
+		0CE807B42AA4A01D00E1FB38 /* PlayersScoresRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE807B32AA4A01D00E1FB38 /* PlayersScoresRow.swift */; };
 		0CE89A9429B380A0001F4232 /* AddPlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9329B380A0001F4232 /* AddPlayerScreen.swift */; };
 		0CE89A9629B38238001F4232 /* AvatarsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */; };
 		0CE89A9929B38578001F4232 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE89A9829B38578001F4232 /* PlayerView.swift */; };
@@ -55,6 +56,7 @@
 		0CAA70C52A9E3A2C00E01C7E /* ChooseGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameScreen.swift; sourceTree = "<group>"; };
 		0CAA70C72A9E587800E01C7E /* ChoosePlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePlayerScreen.swift; sourceTree = "<group>"; };
 		0CAA70CB2A9E7C7500E01C7E /* StatisticsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScreen.swift; sourceTree = "<group>"; };
+		0CE807B32AA4A01D00E1FB38 /* PlayersScoresRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScoresRow.swift; sourceTree = "<group>"; };
 		0CE89A9329B380A0001F4232 /* AddPlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerScreen.swift; sourceTree = "<group>"; };
 		0CE89A9529B38238001F4232 /* AvatarsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsListScreen.swift; sourceTree = "<group>"; };
 		0CE89A9829B38578001F4232 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				0CEBFF272A9B309C003C7FE5 /* MatchCell.swift */,
 				0CAA70BF2A9CCD8C00E01C7E /* AddRoundPlayer.swift */,
+				0CE807B32AA4A01D00E1FB38 /* PlayersScoresRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				0CAA70CC2A9E7C7500E01C7E /* StatisticsScreen.swift in Sources */,
 				0CEBFF202A9A75A4003C7FE5 /* Match.swift in Sources */,
 				0C37419929B229A70061D4E0 /* PlayersScreen.swift in Sources */,
+				0CE807B42AA4A01D00E1FB38 /* PlayersScoresRow.swift in Sources */,
 				0CE89AA829B3A9A0001F4232 /* ScoreCounterStore.swift in Sources */,
 				0C6A4FE529B10F1100A37818 /* ScoreCounterApp.swift in Sources */,
 				0CE89A9F29B3A723001F4232 /* Player.swift in Sources */,

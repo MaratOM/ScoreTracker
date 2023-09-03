@@ -117,45 +117,63 @@ struct MatchScreen: View {
                 .font(.system(size: 24))
         }
         
-        func getRounds() -> some View {
-            let columns: [GridItem] = Array(repeating: .init(.flexible()), count: match.players.count)
-            
-            return ScrollView {
-                VStack {
-                    LazyVGrid(columns: columns, alignment: .center) {
+        func getPlayersScores() -> some View {
+            VStack {
+                List {
+                    // MARK: - Avatars
+                    HStack {
                         ForEach(match.players) { player in
-                            Text("\(player.avatar)")
-                                .font(.system(size: 34))
+                            PlayersScoresRow {
+                                Text(player.avatar)
+                                    .font(.system(size: 34))
+                            }
                         }
                     }
-                    .padding(.top, 6)
-                    LazyVGrid(columns: columns, alignment: .center) {
+                    
+                    // MARK: - Names
+                    HStack {
                         ForEach(match.players) { player in
-                            Text("\(player.name)")
+                            PlayersScoresRow {
+                                Text(player.name)
+                            }
                         }
                     }
-                    .padding(.top, -10)
-                    LazyVGrid(columns: columns, alignment: .center) {
+                    
+                    // MARK: - Places
+                    HStack {
                         ForEach(match.players.indices, id: \.self) { index in
-                            getPlayersPlaceImage(place: getPlayerPlace(index: index))
+                            PlayersScoresRow {
+                                getPlayersPlaceImage(place: getPlayerPlace(index: index))
+                                    .frame(width: 34, height: 34)
+                            }
                         }
                     }
-                    LazyVGrid(columns: columns, alignment: .center) {
+                    
+                    // MARK: - Total scores
+                    HStack {
                         ForEach(match.players.indices, id: \.self) { index in
-                            Text("\(playersScores[index])")
-                                .id("\(playersScores[index])-\(index)")
-                                .font(Font.headline.weight(.bold))
+                            PlayersScoresRow {
+                                Text("\(playersScores[index])")
+                                    .font(.headline.weight(.bold))
+                            }
                         }
                     }
-                    LazyVGrid(columns: columns, alignment: .center) {
-                        ForEach(allScores.indices, id: \.self) { index in
-                            Text("\(allScores[index])")
+                    
+                    // MARK: - Rounds scores
+                    ForEach(match.rounds) { round in
+                        HStack {
+                            ForEach(round.scores) { score in
+                                PlayersScoresRow {
+                                    Text("\(score.score)")
+                                }
+                            }
                         }
                     }
-                    .padding(.top, 8)
                 }
-                .padding(.top, 0)
+                .padding(.top, 6)
+                .listStyle(.plain)
             }
+            .padding(.top, 0)
         }
         
         return VStack(spacing: 6){
@@ -232,7 +250,7 @@ struct MatchScreen: View {
                 }
             }
             HStack() {
-                getRounds()
+                getPlayersScores()
                 Spacer()
             }
             .padding(.top, 12)
