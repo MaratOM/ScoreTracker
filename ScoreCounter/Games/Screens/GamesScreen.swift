@@ -6,40 +6,79 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct GamesScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
+    private var fontSize: CGFloat = 20
 
     var body: some View {
-        NavigationView {
-            VStack {
-                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-                
-                ScrollView {
-                    LazyVGrid(columns: columns, alignment: .leading) {
-                        ForEach(store.games) { game in
-                            NavigationLink {
-                                VStack {
-                                    Image(systemName: game.type.imageName)
-                                        .font(.system(size: 40))
-                                    Text(game.name)
-                                        .font(.system(size: 40))
-                                }
-                            } label: {
-                                Label(game.name, systemImage: game.type.imageName)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .padding(.bottom, 10)
-                        }
-                    }
-                    .padding()
-                }
+        let palette = UIDesignSystemStore.palette
 
-                AddItemView(linkView: AddGameScreen())
-            }
-            .navigationTitle("Games")
+        NavigationView {
+            ZStack {
+                BackgroundMain()
+                VStack {
+                    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+                    
+                    ScrollView {
+                        LazyVGrid(columns: columns, alignment: .leading) {
+                            ForEach(store.games) { game in
+                                NavigationLink {
+                                    ZStack {
+                                        LinearGradient(
+                                            colors: [
+                                                palette.colors.first,
+                                                palette.colors.second,
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing)
+                                        .edgesIgnoringSafeArea(.all)
+                                        VStack {
+                                            Image(systemName: game.type.imageName)
+                                                .font(.system(size: 40))
+                                                .foregroundColor(.yellow)
+                                            Text(game.name)
+                                                .font(.system(size: 40))
+                                                .foregroundColor(.white)
+                                        }
+                                    }
+                                } label: {
+                                    HStack {
+                                        Label(game.name, systemImage: game.type.imageName)
+                                            .font(.system(size: fontSize))
+                                            .foregroundColor(palette.colors.fifth)
+                                            .padding(.leading, 20)
+                                            .padding(.vertical, 10)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: fontSize))
+                                            .foregroundColor(palette.colors.fifth)
+                                            .padding(.trailing, 20)
+                                    }
+                                    .background(palette.colors.second)
+                                    .cornerRadius(14)
+//                                    .clipShape(Capsule())
+                                }
+                                .padding(.bottom, 10)
+                            }
+                        }
+                        .padding()
+                    }
+
+                    AddItemButton(linkView: AddGameScreen())
+
+                    Button {
+                        withAnimation {
+                            store.palette = store.palette == .green ? .purple2 : .green
+                        }
+                    } label: {
+                        Text("Button")
+                    }
+                }
+                .navigationTitle("Games")
             .navigationBarTitleDisplayMode(.inline)
+            }
         }
     }
 }

@@ -22,22 +22,22 @@ struct ContentView: View {
             MatchesScreen()
                 .tag(Tab.matches)
                 .tabItem {
-                    Label("Matches", systemImage: "list.triangle")
+                    Image(systemName: "list.triangle")
                 }
             GamesScreen()
                 .tag(Tab.games)
                 .tabItem {
-                    Label("Games", systemImage: "gamecontroller")
+                    Image(systemName: "gamecontroller")
                 }
             PlayersScreen()
                 .tag(Tab.players)
                 .tabItem {
-                    Label("Players", systemImage: "person")
+                    Image(systemName: "person")
                 }
             StatisticsScreen()
                 .tag(Tab.statistics)
                 .tabItem {
-                    Label("Statistics", systemImage: "chart.bar.xaxis")
+                    Image(systemName: "chart.bar.xaxis")
                 }
         }
     }

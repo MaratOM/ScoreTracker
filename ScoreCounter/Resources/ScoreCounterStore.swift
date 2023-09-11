@@ -6,9 +6,20 @@
 //
 
 import Foundation
+import UIDesignSystem
 
 final class ScoreCounterStore: ObservableObject {
-    @Published var tabSelection: ContentView.Tab = .matches
+    @Published var tabSelection: ContentView.Tab = .games
+    @Published var palette: ColorPalette {
+        didSet {
+            UIDesignSystemStore.palette = palette
+        }
+    }
+
+    init() {        
+        palette = .purple2
+        UIDesignSystemStore.palette = palette
+    }
 
     @Published var games: [Game] = [
         ScoreCounterData.Games.uno,
