@@ -10,7 +10,6 @@ import UIDesignSystem
 
 struct GamesScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
-    private var fontSize: CGFloat = 20
 
     var body: some View {
         let palette = UIDesignSystemStore.palette
@@ -45,14 +44,17 @@ struct GamesScreen: View {
                                     }
                                 } label: {
                                     HStack {
-                                        Label(game.name, systemImage: game.type.imageName)
-                                            .font(.system(size: fontSize))
-                                            .foregroundColor(palette.colors.fifth)
-                                            .padding(.leading, 20)
-                                            .padding(.vertical, 10)
+                                        HStack {
+                                            Image(systemName: game.type.imageName)
+                                                .foregroundColor(palette.colors.fifth)
+                                            Texts.h4(game.name).view
+                                        }
+                                        .padding(.leading, 20)
+                                        .padding(.vertical, 10)
+                                        
                                         Spacer()
                                         Image(systemName: "chevron.right")
-                                            .font(.system(size: fontSize))
+                                            .font(.system(size: 20))
                                             .foregroundColor(palette.colors.fifth)
                                             .padding(.trailing, 20)
                                     }
@@ -73,7 +75,8 @@ struct GamesScreen: View {
                             store.palette = store.palette == .green ? .purple2 : .green
                         }
                     } label: {
-                        Text("Button")
+                        Texts.h3("Change Theme").view
+                            .opacity(0.5)
                     }
                 }
                 .navigationTitle("Games")
