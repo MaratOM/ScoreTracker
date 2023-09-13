@@ -5,8 +5,9 @@
 //  Created by Marat Mikaelyan on 29.08.2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
+import UIDesignSystem
 
 struct AddMatchScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -24,113 +25,113 @@ struct AddMatchScreen: View {
             store.scoreToWin = score
         })
         
-        return VStack(spacing: 6) {
-            HStack {
-                Text("Game:")
-                    .bold()
-                Text("\(store.chosenGameName)")
-                Spacer()
-                Button {
-                    isModalGames.toggle()
-                } label: {
-                    Image(systemName: "pencil.circle")
-                        .font(.system(size: 24))
-                }
-                .sheet(isPresented: $isModalGames) {
-                    if #available(iOS 16.0, *) {
-                        ChooseGameScreen()
-                            .presentationDetents([.medium])
-                    } else {
-                        ChooseGameScreen()
+        return ZStack {
+            BackgroundMain()
+            
+            VStack(spacing: 6) {
+                HStack {
+                    Texts.h4WithOpacity("Game:").view
+                    Texts.h4("\(store.chosenGameName)").view
+                    Spacer()
+                    Button {
+                        isModalGames.toggle()
+                    } label: {
+                        Image(systemName: "pencil.circle")
+                            .font(.system(size: 24))
+                    }
+                    .sheet(isPresented: $isModalGames) {
+                        if #available(iOS 16.0, *) {
+                            ChooseGameScreen()
+                                .presentationDetents([.medium])
+                        } else {
+                            ChooseGameScreen()
+                        }
                     }
                 }
-            }
-            
-            HStack {
-                HStack() {
-                    Text("Players:")
-                        .bold()
-                    if store.chosenPlayers.isEmpty {
-                        Text("add players")
-                            .foregroundColor(.gray)
-                            .opacity(0.6)
-                    } else {
-                        ForEach(store.chosenPlayers, id: \.id) { player in
-                            NavigationLink {
-                                PlayerScreen(player: player)
-                            } label: {
-                                Text(player.name)
+                
+                HStack {
+                    HStack() {
+                        Texts.h4WithOpacity("Players:").view
+
+                        if store.chosenPlayers.isEmpty {
+                            Text("add players")
+                                .foregroundColor(.gray)
+                                .opacity(0.6)
+                        } else {
+                            ForEach(store.chosenPlayers, id: \.id) { player in
+                                NavigationLink {
+                                    PlayerScreen(player: player)
+                                } label: {
+                                    Text(player.name)
+                                }
+                            }
+                            if store.chosenPlayers.count == 1 {
+                                Text("add more players")
+                                    .foregroundColor(.red)
+                                    .opacity(0.6)
                             }
                         }
-                        if store.chosenPlayers.count == 1 {
-                            Text("add more players")
-                                .foregroundColor(.red)
-                                .opacity(0.6)
-                        }
-                    }
 
-                    Spacer()
-                }
- 
-                Button {
-                    isModalPlayers.toggle()
-                } label: {
-                    Image(systemName: store.chosenPlayers.isEmpty ? "plus.circle" : "pencil.circle")
-                        .font(.system(size: 24))
-                }
-                .sheet(isPresented: $isModalPlayers) {
-                    if #available(iOS 16.0, *) {
-                        ChoosePlayerScreen()
-                            .presentationDetents([.medium])
-                    } else {
-                        ChoosePlayerScreen()
+                        Spacer()
                     }
-                }
-            }
-            
-            HStack {
-                Text("Winning score:")
-                    .bold()
-                TextField("enter score", text: binding)
-                    .onReceive(Just(score)) { newValue in
-                        let filtered = newValue.filter { "0123456789".contains($0) }
-                        if filtered != newValue {
-                            self.score = filtered
+     
+                    Button {
+                        isModalPlayers.toggle()
+                    } label: {
+                        Image(systemName: store.chosenPlayers.isEmpty ? "plus.circle" : "pencil.circle")
+                            .font(.system(size: 24))
+                    }
+                    .sheet(isPresented: $isModalPlayers) {
+                        if #available(iOS 16.0, *) {
+                            ChoosePlayerScreen()
+                                .presentationDetents([.medium])
+                        } else {
+                            ChoosePlayerScreen()
                         }
                     }
-                    .font(.system(size: 20))
-                    .keyboardType(.numberPad)
-            }
-            
-            Spacer()
-            
-            if store.chosenPlayers.count > 1, store.scoreToWin > 0 {
-                Button {
-                    store.matches.append(
-                        .init(
-                            game: store.games.first(where: { $0.name == store.chosenGameName}) ?? store.games[0],
-                            date: Date(),
-                            endDate: nil,
-                            players: store.chosenPlayers,
-                            winScore: store.scoreToWin,
-                            rounds: []
+                }
+                
+                HStack {
+                    Texts.h4WithOpacity("Winning score:").view
+                    TextField("enter score", text: binding)
+                        .onReceive(Just(score)) { newValue in
+                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            if filtered != newValue {
+                                self.score = filtered
+                            }
+                        }
+                        .font(.system(size: 20))
+                        .foregroundColor(store.palette.colors.fifth)
+                        .keyboardType(.numberPad)
+                }
+                
+                Spacer()
+                
+                if store.chosenPlayers.count > 1, store.scoreToWin > 0 {
+                    Button {
+                        store.matches.append(
+                            .init(
+                                game: store.games.first(where: { $0.name == store.chosenGameName}) ?? store.games[0],
+                                date: Date(),
+                                endDate: nil,
+                                players: store.chosenPlayers,
+                                winScore: store.scoreToWin,
+                                rounds: []
+                            )
                         )
-                    )
-                    store.chosenPlayers = []
-                    store.scoreToWin = 0
-                    store.chosenGameName = store.chosenGameDefaultName
-                    score = ""
-                    dismiss()
-                } label: {
-                    Label("text", systemImage: "plus.circle")
-                        .font(.system(size: 50))
-                        .foregroundColor(.blue)
-                        .labelStyle(.iconOnly)
+                        store.chosenPlayers = []
+                        store.scoreToWin = 0
+                        store.chosenGameName = store.chosenGameDefaultName
+                        score = ""
+                        dismiss()
+                    } label: {
+                        AddItemButtonLabel()
+                    }
                 }
             }
-        }
-        .navigationTitle("Add match")
+            .navigationTitle("Add match")
         .padding()
+        }
     }
 }
 

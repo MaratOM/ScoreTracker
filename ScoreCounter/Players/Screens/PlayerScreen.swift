@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct PlayerScreen: View {
     var player: Player
 
     var body: some View {
-        VStack {
-            Text(player.avatar)
-                .font(.system(size: 140))
-            Text(player.name)
-                .font(.largeTitle)
-                .foregroundColor(.black)
+        ZStack {
+            BackgroundMain()
+            
+            VStack {
+                Text(player.avatar)
+                    .font(.system(size: 140))
+                Texts.h1(player.name).view
+            }
         }
     }
 }

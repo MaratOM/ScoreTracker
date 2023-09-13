@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct MatchScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -119,7 +120,7 @@ struct MatchScreen: View {
         
         func getPlayersScores() -> some View {
             VStack {
-                List {
+                VStack {
                     // MARK: - Avatars
                     HStack {
                         ForEach(match.players) { player in
@@ -134,7 +135,7 @@ struct MatchScreen: View {
                     HStack {
                         ForEach(match.players) { player in
                             PlayersScoresRow {
-                                Text(player.name)
+                                Texts.h4(player.name).view
                             }
                         }
                     }
@@ -153,18 +154,19 @@ struct MatchScreen: View {
                     HStack {
                         ForEach(match.players.indices, id: \.self) { index in
                             PlayersScoresRow {
-                                Text("\(playersScores[index])")
+                                Texts.h4("\(playersScores[index])").view
                                     .font(.headline.weight(.bold))
                             }
                         }
                     }
+                    .padding(.bottom, 10)
                     
                     // MARK: - Rounds scores
                     ForEach(match.rounds) { round in
                         HStack {
                             ForEach(round.scores) { score in
                                 PlayersScoresRow {
-                                    Text("\(score.score)")
+                                    Texts.h5("\(score.score)").view
                                 }
                             }
                         }
@@ -176,108 +178,106 @@ struct MatchScreen: View {
             .padding(.top, 0)
         }
         
-        return VStack(spacing: 6){
-            HStack() {
-                Text("Game:")
-                    .bold()
-                Text("\(match.game.name)")
-                Spacer()
-                gameStatus
-            }
-            HStack() {
-                Text("Start time:")
-                    .bold()
-                Text("\(getDate())")
-                Spacer()
-                Label(getDuration(), systemImage: "clock")
-                    .foregroundColor(.green)
-            }
-            HStack() {
-                Text("Winning score:")
-                    .bold()
-                Text("\(store.matches[index].winScore)")
-                Spacer()
-                if match.winner == nil {
-                    if !editWinScore {
-                        Button {
-                            editWinScore.toggle()
-                        } label: {
-                            Image(systemName: "pencil.circle")
-                                .font(.system(size: 24))
-                        }
-                    } else {
-                        let step = store.matches[index].winScore > 99 ? 10 : 1
-                        Stepper(
-                            "",
-                            value: $store.matches[index].winScore,
-                            in: (playersScores.max() ?? 0)...100000,
-                            step: step
-                        )
-                        .frame(height: 20)
-                        
-                        Button {
-                            editWinScore.toggle()
-                        } label: {
-                            Image(systemName: "checkmark.circle")
-                                .font(.system(size: 24))
-                                .foregroundColor(.green)
+        return ZStack {
+            BackgroundMain()
+
+            VStack(spacing: 6){
+                HStack() {
+                    Texts.h4WithOpacity("Game:").view
+                    Texts.h4("\(match.game.name)").view
+                    Spacer()
+                    gameStatus
+                }
+                HStack() {
+                    Texts.h4WithOpacity("Start time:").view
+                    Texts.h4("\(getDate())").view
+                    Spacer()
+                    Label(getDuration(), systemImage: "clock")
+                        .foregroundColor(.green)
+                }
+                HStack {
+                    Texts.h4WithOpacity("Winning score:").view
+                    Texts.h4("\(store.matches[index].winScore)").view
+                    Spacer()
+                    if match.winner == nil {
+                        if !editWinScore {
+                            Button {
+                                editWinScore.toggle()
+                            } label: {
+                                Image(systemName: "pencil.circle")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(store.palette.colors.fifth)
+                            }
+                        } else {
+                            let step = store.matches[index].winScore > 99 ? 10 : 1
+                            Stepper(
+                                "",
+                                value: $store.matches[index].winScore,
+                                in: (playersScores.max() ?? 0)...100000,
+                                step: step
+                            )
+                            .frame(height: 20)
+                            
+                            Button {
+                                editWinScore.toggle()
+                            } label: {
+                                Image(systemName: "checkmark.circle")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.green)
+                            }
                         }
                     }
                 }
-            }
-            HStack() {
-                Text("Players:")
-                    .bold()
-                ForEach(match.players, id: \.id) { player in
-                    NavigationLink {
-                        PlayerScreen(player: player)
-                    } label: {
-                        Text(player.name)
-                    }
-                }
-                Spacer()
-            }
-            HStack {
-                if let winner = match.winner {
-                    Text("Winner:")
-                        .bold()
-                    NavigationLink {
-                        PlayerScreen(player: winner)
-                    } label: {
-                        Text("\(winner.name)")
+                HStack() {
+                    Texts.h4WithOpacity("Players:").view
+                    ForEach(match.players, id: \.id) { player in
+                        NavigationLink {
+                            PlayerScreen(player: player)
+                        } label: {
+                            Text(player.name)
+                        }
                     }
                     Spacer()
                 }
-            }
-            HStack() {
-                getPlayersScores()
-                Spacer()
-            }
-            .padding(.top, 12)
-            
-            Spacer()
-            
-            if match.winner == nil {
-                Button {
-                    isModal.toggle()
-                } label: {
-                    Label("text", systemImage: "plus.circle")
-                        .font(.system(size: 50))
-                        .foregroundColor(.blue)
-                        .labelStyle(.iconOnly)
+                HStack {
+                    if let winner = match.winner {
+                        Text("Winner:")
+                            .bold()
+                        NavigationLink {
+                            PlayerScreen(player: winner)
+                        } label: {
+                            Text("\(winner.name)")
+                        }
+                        Spacer()
+                    }
                 }
-                .sheet(isPresented: $isModal) {
-                    if #available(iOS 16.0, *) {
-                        AddRoundScreen(match: match)
-                            .presentationDetents([.medium])
-                    } else {
-                        AddRoundScreen(match: match)
+                HStack() {
+                    getPlayersScores()
+                    Spacer()
+                }
+                .padding(.top, 12)
+                
+                Spacer()
+                
+                if match.winner == nil {
+                    Button {
+                        isModal.toggle()
+                    } label: {
+                        AddItemButtonLabel()
+                    }
+                    .sheet(isPresented: $isModal) {
+                        if #available(iOS 16.0, *) {
+                            AddRoundScreen(match: match)
+                                .presentationDetents([.medium])
+                        } else {
+                            AddRoundScreen(match: match)
+                        }
                     }
                 }
             }
-        }
-        .navigationTitle("Match")
+            .navigationTitle("Match")
         .padding()
+        }
     }
 }
 

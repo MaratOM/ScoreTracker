@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct PlayerView: View {
     var player: Player
@@ -13,9 +14,7 @@ struct PlayerView: View {
         VStack {
             Text(player.avatar)
                 .font(.system(size: 70))
-            Text(player.name)
-                .font(.headline)
-                .foregroundColor(.black)
+            Texts.h4(player.name).view
         }
     }
 }

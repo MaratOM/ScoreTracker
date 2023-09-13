@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct MatchesScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
 
     var body: some View {
         NavigationView {
-            VStack {
-                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-                
-                ScrollView {
-                    LazyVGrid(columns: columns, alignment: .leading) {
+            ZStack {
+                BackgroundMain()
+
+                VStack {
+                    ScrollView {
                         ForEach(store.matches) { match in
                             NavigationLink {
                                 MatchScreen(chosenMatch: match)
@@ -27,14 +28,14 @@ struct MatchesScreen: View {
                             }
                             .padding(.bottom, 10)
                         }
+                        .padding()
                     }
-                    .padding()
+                    
+                    AddItemButton(linkView: AddMatchScreen())
                 }
-
-                AddItemView(linkView: AddMatchScreen())
+                .navigationTitle("Matches")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Matches")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

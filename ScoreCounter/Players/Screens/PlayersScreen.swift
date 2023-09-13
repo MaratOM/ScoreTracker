@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct PlayersScreen: View {
     @EnvironmentObject var store: ScoreCounterStore
@@ -14,25 +15,29 @@ struct PlayersScreen: View {
         let players = store.players
 
         NavigationView {
-            VStack {
-                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+            ZStack {
+                BackgroundMain()
                 
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(players) { player in
-                            NavigationLink {
-                                PlayerScreen(player: player)
-                            } label: {
-                                PlayerView(player: player)
+                VStack {
+                    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+                    
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(players) { player in
+                                NavigationLink {
+                                    PlayerScreen(player: player)
+                                } label: {
+                                    PlayerView(player: player)
+                                }
                             }
                         }
                     }
+                    
+                    AddItemButton(linkView: AddPlayerScreen())
                 }
-                
-                AddItemView(linkView: AddPlayerScreen())
-            }
-            .navigationTitle("Players")
+                .navigationTitle("Players")
             .navigationBarTitleDisplayMode(.inline)
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

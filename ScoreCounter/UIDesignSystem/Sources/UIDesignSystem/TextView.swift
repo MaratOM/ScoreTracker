@@ -12,6 +12,7 @@ public enum Texts {
     case h2(String)
     case h3(String)
     case h4(String)
+    case h4WithOpacity(String)
     case h5(String)
     case paragraph(String)
     
@@ -25,7 +26,7 @@ public enum Texts {
             return 28
         case .h3:
             return 24
-        case .h4:
+        case .h4, .h4WithOpacity:
             return 20
         case .h5:
             return 16
@@ -51,6 +52,8 @@ public enum Texts {
             return TextView(text: text, size: self.size, color: self.color)
         case .h4(let text):
             return TextView(text: text, size: self.size, color: self.color)
+        case .h4WithOpacity(let text):
+            return TextView(text: text, size: self.size, color: self.color, opacity: 0.7)
         case .h5(let text):
             return TextView(text: text, size: self.size, color: self.color)
         case .paragraph(let text):
@@ -63,11 +66,20 @@ struct TextView: View {
     var text: String
     var size: CGFloat
     var color: Color
+    var opacity: Double
+    
+    internal init(text: String, size: CGFloat, color: Color, opacity: Double = 1.0) {
+        self.text = text
+        self.size = size
+        self.color = color
+        self.opacity = opacity
+    }
 
     var body: some View {
         Text(text)
             .font(.system(size: size))
             .foregroundColor(color)
+            .opacity(opacity)
     }
 }
 

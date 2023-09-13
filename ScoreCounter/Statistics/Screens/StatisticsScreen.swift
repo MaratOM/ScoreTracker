@@ -6,19 +6,27 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct StatisticsScreen: View {
+    @EnvironmentObject var store: ScoreCounterStore
+
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Statistics")
-                    .font(.system(size: 30))
-                    .padding(.bottom, 16)
-                Image(systemName: "chart.bar.xaxis")
-                    .font(.system(size: 50))
-            }
-            .navigationTitle("Players")
+            ZStack {
+                BackgroundMain()
+
+                VStack {
+                    Texts.h1("Statistics").view
+                        .padding(.bottom, 16)
+                    Image(systemName: "chart.bar.xaxis")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(store.palette.colors.fifth)
+                }
+                .navigationTitle("Players")
             .navigationBarTitleDisplayMode(.inline)
+            }
         }
     }
 }
@@ -26,5 +34,6 @@ struct StatisticsScreen: View {
 struct StatisticsScreen_Previews: PreviewProvider {
     static var previews: some View {
         StatisticsScreen()
+            .environmentObject(ScoreCounterStore())
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIDesignSystem
 
 final class ScoreCounterStore: ObservableObject {
-    @Published var tabSelection: ContentView.Tab = .games
+    @Published var tabSelection: ContentView.Tab = .matches
     @Published var palette: ColorPalette {
         didSet {
             UIDesignSystemStore.palette = palette

@@ -17,6 +17,7 @@ struct GamesScreen: View {
         NavigationView {
             ZStack {
                 BackgroundMain()
+
                 VStack {
                     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
                     
@@ -36,10 +37,8 @@ struct GamesScreen: View {
                                         VStack {
                                             Image(systemName: game.type.imageName)
                                                 .font(.system(size: 40))
-                                                .foregroundColor(.yellow)
-                                            Text(game.name)
-                                                .font(.system(size: 40))
-                                                .foregroundColor(.white)
+                                                .foregroundColor(store.palette.colors.fourth)
+                                            Texts.h1(game.name).view
                                         }
                                     }
                                 } label: {
