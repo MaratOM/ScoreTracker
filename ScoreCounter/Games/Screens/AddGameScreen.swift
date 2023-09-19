@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct AddGameScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -19,23 +20,33 @@ struct AddGameScreen: View {
     }
 
     var body: some View {
-        VStack {
-            Picker(selection: $type) {
-                ForEach(GameType.allCases, id: \.self) {
-                    Image(systemName: $0.imageName).tag($0)    
-                }
-            } label: {
-                Text("Picker Name")
-            }
-            .pickerStyle(.segmented)
-            
-            Text("\(type.description)")
-            
-            TextField("Add Game", text: $name)
-                .font(.title)
-                .multilineTextAlignment(.center)
-            
+        ZStack {
+            BackgroundMain()
+
             VStack {
+                Picker(selection: $type) {
+                    ForEach(GameType.allCases, id: \.self) {
+                        Image(systemName: $0.imageName).tag($0)
+                    }
+                } label: {
+                    Text("Picker Name")
+                }
+                .pickerStyle(.segmented)
+                
+                Texts.h4("\(type.description)").view
+
+                TextField("", text: $name)
+                    .placeholder(when: name.isEmpty, alignment: .center) {
+                        Texts.h4WithOpacity("Game name").view
+                            .opacity(0.7)
+                    }
+                    .font(.title)
+                    .foregroundColor(store.palette.colors.fifth)
+                    .background(store.palette.colors.second)
+                    .cornerRadius(10)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 200)
+                
                 HStack {
                     Button {
                         dismiss()
@@ -63,9 +74,11 @@ struct AddGameScreen: View {
                     .buttonStyle(.borderedProminent)
                     .disabled(name == "")
                 }
+                .padding(.top, 8)
+
             }
+            .navigationTitle("Add Game")
         }
-        .navigationTitle("Add Game")
     }
 }
 
@@ -75,4 +88,3 @@ struct AddGameScreen_Previews: PreviewProvider {
             .environmentObject(ScoreCounterStore())
     }
 }
-

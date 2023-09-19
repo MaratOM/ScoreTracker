@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct AddRoundScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -44,72 +45,76 @@ struct AddRoundScreen: View {
             return num
         }
 
-        return VStack {
-            HStack {
-                Spacer()
-                Button {
-                    store.roundToAdd = [:]
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.circle")
-                        .font(.system(size: 30))
-                        .padding(.trailing, 20)
-                        .padding([.top, .bottom], 5)
-                        .foregroundColor(.black)
-                }
-            }
-
-            ScrollView {
-                VStack {
-                    LazyVGrid(columns: columns) {
-                        ForEach(match.players, id: \.id) { player in
-                            AddRoundPlayer(player: player)
-                                .padding(0)
-
-                        }
-                    }
-                    .padding(.horizontal, 40)
-                }
-            }
+        return ZStack {
+            BackgroundMain()
             
-            Spacer()
-            
-            HStack {
-                Button {
-                    store.roundToAdd = [:]
-                    dismiss()
-                } label: {
-                    Text("Cancel")
-                }
-                .buttonStyle(.bordered)
-                
-                Button {
-                    if let index = store.matches.firstIndex(where: { $0 == match}) {
-                        var scores: [Score] = []
-
-                        for (player, score) in store.roundToAdd {
-                            scores.append(.init(player: player, score: score))
-                        }
-                        
-                        scores.sort(by: { score1, score2 in
-                            let player1Index = match.players.firstIndex(where: { $0 == score1.player}) ?? 0
-                            let player2Index = match.players.firstIndex(where: { $0 == score2.player}) ?? 0
-                            return player1Index < player2Index
-                        })
-                                                
-                        store.matches[index].rounds.append(.init(scores: scores))
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
                         store.roundToAdd = [:]
-                        
-                        if let leader = getLeader(index: index), leader.score >= match.winScore {
-                            store.matches[index].winner = leader.player
-                        }
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .font(.system(size: 30))
+                            .padding(.trailing, 20)
+                            .padding([.top, .bottom], 5)
+                            .foregroundColor(store.palette.colors.fourth)
                     }
-                    dismiss()
-                } label: {
-                    Text("Add")
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(store.roundToAdd.count != match.players.count)
+
+                ScrollView {
+                    VStack {
+                        LazyVGrid(columns: columns) {
+                            ForEach(match.players, id: \.id) { player in
+                                AddRoundPlayer(player: player)
+                                    .padding(0)
+
+                            }
+                        }
+                        .padding(.horizontal, 40)
+                    }
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Button {
+                        store.roundToAdd = [:]
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Button {
+                        if let index = store.matches.firstIndex(where: { $0 == match}) {
+                            var scores: [Score] = []
+
+                            for (player, score) in store.roundToAdd {
+                                scores.append(.init(player: player, score: score))
+                            }
+                            
+                            scores.sort(by: { score1, score2 in
+                                let player1Index = match.players.firstIndex(where: { $0 == score1.player}) ?? 0
+                                let player2Index = match.players.firstIndex(where: { $0 == score2.player}) ?? 0
+                                return player1Index < player2Index
+                            })
+                                                    
+                            store.matches[index].rounds.append(.init(scores: scores))
+                            store.roundToAdd = [:]
+                            
+                            if let leader = getLeader(index: index), leader.score >= match.winScore {
+                                store.matches[index].winner = leader.player
+                            }
+                        }
+                        dismiss()
+                    } label: {
+                        Text("Add")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(store.roundToAdd.count != match.players.count)
+                }
             }
         }
     }

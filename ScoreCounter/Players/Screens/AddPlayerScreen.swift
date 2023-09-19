@@ -8,6 +8,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct AddPlayerScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -23,56 +24,69 @@ struct AddPlayerScreen: View {
     var body: some View {
         let avatar = store.chosenAvatar
         
-        VStack {
-            Button {
-                isModal.toggle()
-            } label: {
-                Text(avatar != "" ? avatar : "🫥")
-                    .font(.system(size: 120))
-                    .foregroundColor(.black)
-            }
-            .sheet(isPresented: $isModal) {
-                AvatarsListScreen()
-            }
-            
-            TextField("Add Name", text: $name)
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .padding(.top, -70)
+        ZStack {
+            BackgroundMain()
             
             VStack {
-                HStack {
-                    Button {
-                        dismiss()
-                        clearData()
-                    } label: {
-                        Text("Cancel")
+                Button {
+                    isModal.toggle()
+                } label: {
+                    Text(avatar != "" ? avatar : "🫥")
+                        .font(.system(size: 120))
+                        .foregroundColor(.black)
+                }
+                .sheet(isPresented: $isModal) {
+                    AvatarsListScreen()
+                }
+
+                TextField("", text: $name)
+                    .placeholder(when: name.isEmpty) {
+                        Texts.h4WithOpacity("Add Name").view
+                            .opacity(0.7)
                     }
-                    .buttonStyle(.bordered)
-                    
-                    Button {
-                        if store.chosenAvatar != "",
-                           name != "" {
-                            store.players.append(
-                                Player(
-                                    name: name,
-                                    avatar: store.chosenAvatar
-                                )
-                            )
-                            
+                    .font(.title)
+                    .foregroundColor(store.palette.colors.fifth)
+                    .background(store.palette.colors.second)
+                    .cornerRadius(10)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 200)
+                    .padding(.top, -70)
+
+                
+                VStack {
+                    HStack {
+                        Button {
                             dismiss()
                             clearData()
+                        } label: {
+                            Text("Cancel")
                         }
-                    } label: {
-                        Text("Add")
+                        .buttonStyle(.bordered)
+                        
+                        Button {
+                            if store.chosenAvatar != "",
+                               name != "" {
+                                store.players.append(
+                                    Player(
+                                        name: name,
+                                        avatar: store.chosenAvatar
+                                    )
+                                )
+                                
+                                dismiss()
+                                clearData()
+                            }
+                        } label: {
+                            Text("Add")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(store.chosenAvatar == "" || name == "")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(store.chosenAvatar == "" || name == "")
+                    .padding(.top, -30)
                 }
-                .padding(.top, -30)
             }
+            .navigationTitle("Add Player")
         }
-        .navigationTitle("Add Player")
     }
 }
 

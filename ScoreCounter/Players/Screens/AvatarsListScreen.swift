@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIDesignSystem
 
 struct AvatarsListScreen: View {
     @Environment(\.dismiss) var dismiss
@@ -14,31 +15,35 @@ struct AvatarsListScreen: View {
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
 
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.circle")
-                        .font(.system(size: 30))
-                        .padding(.trailing, 20)
-                        .padding([.top, .bottom], 5)
-                        .foregroundColor(.black)
+        ZStack {
+            BackgroundMain()
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle")
+                            .font(.system(size: 30))
+                            .padding(.trailing, 20)
+                            .padding([.top, .bottom], 5)
+                            .foregroundColor(store.palette.colors.fourth)
+                    }
                 }
-            }
 
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(0x1f600...0x1f645, id: \.self) { value in
-                        let avatar = emoji(value)
-                        
-                        Button {
-                            store.chosenAvatar = avatar
-                            dismiss()
-                        } label: {
-                            Text(avatar)
-                                .font(.system(size: 70))
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(0x1f600...0x1f645, id: \.self) { value in
+                            let avatar = emoji(value)
+                            
+                            Button {
+                                store.chosenAvatar = avatar
+                                dismiss()
+                            } label: {
+                                Text(avatar)
+                                    .font(.system(size: 70))
+                            }
                         }
                     }
                 }
