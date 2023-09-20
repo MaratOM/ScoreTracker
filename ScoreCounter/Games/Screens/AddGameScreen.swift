@@ -34,17 +34,8 @@ struct AddGameScreen: View {
                 .pickerStyle(.segmented)
                 
                 Texts.h4("\(type.description)").view
-
-                TextField("", text: $name)
-                    .placeholder(when: name.isEmpty, alignment: .center) {
-                        Texts.h4WithOpacity("Game name").view
-                            .opacity(0.7)
-                    }
-                    .font(.title)
-                    .foregroundColor(store.palette.colors.fifth)
-                    .background(store.palette.colors.second)
-                    .cornerRadius(10)
-                    .multilineTextAlignment(.center)
+                
+                TextFields.big("Game name", $name).view
                     .frame(width: 200)
                 
                 HStack {

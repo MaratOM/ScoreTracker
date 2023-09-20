@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import UIDesignSystem
 
 struct AddRoundPlayer: View {
     @EnvironmentObject var store: ScoreCounterStore
@@ -23,23 +24,24 @@ struct AddRoundPlayer: View {
             store.roundToAdd[player] = score
         })
 
-        return HStack {
+        HStack {
             Text(player.avatar)
                 .font(.system(size: 40))
 
-            Text(player.name)
-                .font(.system(size: 20))
+            Texts.h3(player.name).view
                 .padding(.trailing, 10)
+            
+            Spacer()
 
-            TextField("score", text: binding)
+            TextFields.big("add score", binding).view
                 .onReceive(Just(score)) { newValue in
                     let filtered = newValue.filter { "0123456789".contains($0) }
                     if filtered != newValue {
                         self.score = filtered
                     }
                 }
-                .font(.system(size: 30))
                 .keyboardType(.numberPad)
+                .frame(width: 80)
         }
         .padding(0)
         .frame(height: 50)

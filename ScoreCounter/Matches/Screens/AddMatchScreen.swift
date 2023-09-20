@@ -93,15 +93,14 @@ struct AddMatchScreen: View {
                 
                 HStack {
                     Texts.h4WithOpacity("Winning score:").view
-                    TextField("enter score", text: binding)
+
+                    TextFields.small("", binding).view
                         .onReceive(Just(score)) { newValue in
                             let filtered = newValue.filter { "0123456789".contains($0) }
                             if filtered != newValue {
                                 self.score = filtered
                             }
                         }
-                        .font(.system(size: 20))
-                        .foregroundColor(store.palette.colors.fifth)
                         .keyboardType(.numberPad)
                 }
                 
