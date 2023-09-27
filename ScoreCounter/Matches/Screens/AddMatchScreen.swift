@@ -26,7 +26,7 @@ struct AddMatchScreen: View {
         })
         
         return ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack(spacing: 6) {
                 HStack {

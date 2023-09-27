@@ -18,7 +18,7 @@ struct ButtonView: View {
             action()
         } label: {
             ZStack {
-                BackgroundMain()
+                Backgrounds.button.view
                 Texts.h4(title).view
                     .frame(minWidth: 0, maxWidth: 100)
                     .padding(10)

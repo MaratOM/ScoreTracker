@@ -25,7 +25,7 @@ struct AddPlayerScreen: View {
         let avatar = store.chosenAvatar
         
         ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack {
                 Button {

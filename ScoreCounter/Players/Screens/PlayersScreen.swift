@@ -16,7 +16,7 @@ struct PlayersScreen: View {
 
         NavigationView {
             ZStack {
-                BackgroundMain()
+                Backgrounds.main.view
                 
                 VStack {
                     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)

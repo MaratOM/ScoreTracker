@@ -13,7 +13,7 @@ struct PlayerScreen: View {
 
     var body: some View {
         ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack {
                 Text(player.avatar)

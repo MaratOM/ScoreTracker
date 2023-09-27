@@ -16,7 +16,7 @@ struct ChoosePlayerScreen: View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
         
         return ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack {
                 HStack {

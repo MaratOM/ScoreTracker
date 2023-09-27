@@ -16,7 +16,7 @@ struct AvatarsListScreen: View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
 
         ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack {
                 HStack {

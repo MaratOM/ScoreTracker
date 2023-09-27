@@ -14,7 +14,7 @@ struct MatchesScreen: View {
     var body: some View {
         NavigationView {
             ZStack {
-                BackgroundMain()
+                Backgrounds.main.view
 
                 VStack {
                     ScrollView {

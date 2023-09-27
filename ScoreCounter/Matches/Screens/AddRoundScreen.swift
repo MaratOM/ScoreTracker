@@ -46,7 +46,7 @@ struct AddRoundScreen: View {
         }
 
         return ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
             
             VStack {
                 HStack {

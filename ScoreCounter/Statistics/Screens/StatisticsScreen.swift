@@ -14,7 +14,7 @@ struct StatisticsScreen: View {
     var body: some View {
         NavigationView {
             ZStack {
-                BackgroundMain()
+                Backgrounds.main.view
 
                 VStack {
                     Texts.h1("Statistics").view

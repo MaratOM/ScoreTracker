@@ -21,7 +21,7 @@ struct AddGameScreen: View {
 
     var body: some View {
         ZStack {
-            BackgroundMain()
+            Backgrounds.main.view
 
             VStack {
                 Picker(selection: $type) {
