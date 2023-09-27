@@ -39,15 +39,12 @@ struct AddGameScreen: View {
                     .frame(width: 200)
                 
                 HStack {
-                    Button {
+                    Buttons.big({
                         dismiss()
                         clearData()
-                    } label: {
-                        Text("Cancel")
-                    }
-                    .buttonStyle(.bordered)
+                    }, "Cancel", false).view
                     
-                    Button {
+                    Buttons.big({
                         if name != "" {
                             store.games.append(
                                 Game(
@@ -59,11 +56,7 @@ struct AddGameScreen: View {
                             dismiss()
                             clearData()
                         }
-                    } label: {
-                        Text("Add")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(name == "")
+                    }, "Add", name == "").view
                 }
                 .padding(.top, 8)
 
